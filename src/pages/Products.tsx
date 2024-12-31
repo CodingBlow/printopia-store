@@ -155,7 +155,11 @@ const Products = () => {
     if (item) {
       removeFromCart(id);
       if (newQuantity > 0) {
-        addToCart({ ...item, quantity: newQuantity });
+        addToCart({
+          id: item.id,
+          name: item.name,
+          price: item.price
+        });
       }
     }
   };
