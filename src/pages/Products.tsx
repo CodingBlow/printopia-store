@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,9 +8,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Printer, ShoppingCart, Package, Wrench, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import CartItem from "@/components/CartItem";
+import CheckoutForm, { CheckoutFormData } from "@/components/CheckoutForm";
+import OrderSuccess from "@/components/OrderSuccess";
 
 const categories = [
   {
@@ -140,23 +142,36 @@ const categories = [
 ];
 
 const Products = () => {
-  const { addToCart, items, checkout } = useCart();
+  const { addToCart, items, removeFromCart, clearCart, checkout } = useCart();
   const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
-  const [deliveryDetails, setDeliveryDetails] = useState({
-    name: "",
-    address: "",
-    phone: ""
-  });
-  const [showDeliveryForm, setShowDeliveryForm] = useState(false);
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const cartTotal = items.reduce((total, item) => total + (item.price * item.quantity), 0);
 
-  const handleDeliverySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    checkout();
-    setShowDeliveryForm(false);
-    setDeliveryDetails({ name: "", address: "", phone: "" });
+  const handleQuantityChange = (id: number, newQuantity: number) => {
+    const item = items.find(i => i.id === id);
+    if (item) {
+      removeFromCart(id);
+      if (newQuantity > 0) {
+        addToCart({ ...item, quantity: newQuantity });
+      }
+    }
   };
+
+  const handleCheckout = (data: CheckoutFormData) => {
+    checkout();
+    setShowCheckoutForm(false);
+    setShowSuccess(true);
+    setTimeout(() => {
+      navigate('/');
+    }, 5000);
+  };
+
+  if (showSuccess) {
+    return <OrderSuccess />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -180,64 +195,32 @@ const Products = () => {
                   <p className="text-muted-foreground">Your cart is empty</p>
                 ) : (
                   <>
-                    {items.map((item) => (
-                      <div key={item.id} className="flex items-center justify-between py-4 border-b">
-                        <div>
-                          <h3 className="font-medium">{item.name}</h3>
-                          <p className="text-sm text-muted-foreground">
-                            Quantity: {item.quantity}
-                          </p>
-                        </div>
-                        <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
-                      </div>
-                    ))}
-                    <div className="mt-4 space-y-4">
-                      <div className="flex justify-between font-medium">
+                    <div className="space-y-4">
+                      {items.map((item) => (
+                        <CartItem
+                          key={item.id}
+                          {...item}
+                          category={categories.find(cat => 
+                            cat.products.some(p => p.id === item.id)
+                          )?.id || ""}
+                          onQuantityChange={handleQuantityChange}
+                        />
+                      ))}
+                    </div>
+                    <div className="mt-4 pt-4 border-t">
+                      <div className="flex justify-between font-medium mb-4">
                         <span>Total</span>
                         <span>${cartTotal.toFixed(2)}</span>
                       </div>
-                      {!showDeliveryForm ? (
+                      {!showCheckoutForm ? (
                         <Button 
                           className="w-full" 
-                          onClick={() => setShowDeliveryForm(true)}
-                          disabled={items.length === 0}
+                          onClick={() => setShowCheckoutForm(true)}
                         >
                           Proceed to Checkout
                         </Button>
                       ) : (
-                        <form onSubmit={handleDeliverySubmit} className="space-y-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="name">Full Name</Label>
-                            <Input
-                              id="name"
-                              value={deliveryDetails.name}
-                              onChange={(e) => setDeliveryDetails(prev => ({...prev, name: e.target.value}))}
-                              required
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="address">Delivery Address</Label>
-                            <Input
-                              id="address"
-                              value={deliveryDetails.address}
-                              onChange={(e) => setDeliveryDetails(prev => ({...prev, address: e.target.value}))}
-                              required
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="phone">Phone Number</Label>
-                            <Input
-                              id="phone"
-                              type="tel"
-                              value={deliveryDetails.phone}
-                              onChange={(e) => setDeliveryDetails(prev => ({...prev, phone: e.target.value}))}
-                              required
-                            />
-                          </div>
-                          <Button type="submit" className="w-full">
-                            Place Order
-                          </Button>
-                        </form>
+                        <CheckoutForm onSubmit={handleCheckout} />
                       )}
                     </div>
                   </>
@@ -299,7 +282,7 @@ const Products = () => {
                   </Button>
                 </CardFooter>
               </Card>
-          ))}
+            ))}
         </div>
       </main>
       <Footer />
