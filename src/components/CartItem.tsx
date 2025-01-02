@@ -9,10 +9,11 @@ interface CartItemProps {
   price: number;
   quantity: number;
   category: string;
+  image?: string;
   onQuantityChange: (id: number, newQuantity: number) => void;
 }
 
-const CartItem = ({ id, name, price, quantity, category, onQuantityChange }: CartItemProps) => {
+const CartItem = ({ id, name, price, quantity, category, image, onQuantityChange }: CartItemProps) => {
   const showQuantityControls = category !== "support";
 
   const handleIncrement = () => {
@@ -26,11 +27,19 @@ const CartItem = ({ id, name, price, quantity, category, onQuantityChange }: Car
   };
 
   return (
-    <div className="flex items-center justify-between py-4 border-b">
+    <div className="flex items-center gap-4 py-4 border-b">
+      {image && (
+        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+          <img src={image} alt={name} className="w-full h-full object-cover" />
+        </div>
+      )}
       <div className="flex-1">
         <h3 className="font-medium">{name}</h3>
         <p className="text-sm text-muted-foreground">
           ${price.toFixed(2)} {showQuantityControls ? `x ${quantity}` : ""}
+        </p>
+        <p className="text-sm font-medium">
+          Total: ${(price * quantity).toFixed(2)}
         </p>
       </div>
       {showQuantityControls && (
