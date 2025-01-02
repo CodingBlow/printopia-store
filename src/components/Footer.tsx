@@ -28,17 +28,17 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h4 className="text-white text-lg font-semibold mb-4">Contact</h4>
+            <h4 className="text-white text-lg font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
-              <li>1234 Print Street</li>
-              <li>Tech City, TC 12345</li>
-              <li>support@printtech.com</li>
-              <li>(555) 123-4567</li>
+              <li><a href="/terms" className="hover:text-white transition-colors">Terms & Conditions</a></li>
+              <li><a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="/shipping" className="hover:text-white transition-colors">Shipping Policy</a></li>
+              <li><a href="/returns" className="hover:text-white transition-colors">Return Policy</a></li>
             </ul>
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p>&copy; 2024 PrintTech. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} PrintTech. All rights reserved.</p>
         </div>
       </div>
     </footer>
