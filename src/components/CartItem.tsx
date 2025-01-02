@@ -8,7 +8,7 @@ interface CartItemProps {
   name: string;
   price: number;
   quantity: number;
-  category: string;
+  category?: string; // Made optional with ?
   image?: string;
   onQuantityChange: (id: number, newQuantity: number) => void;
 }
