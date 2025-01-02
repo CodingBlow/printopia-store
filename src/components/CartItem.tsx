@@ -26,6 +26,11 @@ const CartItem = ({ id, name, price, quantity, category, image, onQuantityChange
     }
   };
 
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = parseInt(e.target.value) || 1;
+    onQuantityChange(id, Math.max(1, newQuantity));
+  };
+
   return (
     <div className="flex items-center gap-4 py-4 border-b">
       {image && (
@@ -55,7 +60,7 @@ const CartItem = ({ id, name, price, quantity, category, image, onQuantityChange
           <Input
             type="number"
             value={quantity}
-            onChange={(e) => onQuantityChange(id, parseInt(e.target.value) || 1)}
+            onChange={handleQuantityChange}
             className="w-16 text-center"
             min="1"
           />

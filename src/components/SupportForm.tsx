@@ -14,6 +14,7 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -106,6 +107,9 @@ Brand: ${data.brand}
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Support Request</DialogTitle>
+          <DialogDescription>
+            Fill out this form and we'll get back to you as soon as possible.
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
