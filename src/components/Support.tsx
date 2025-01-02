@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import SupportForm from "@/components/SupportForm";
 
 const Support = () => {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <section className="bg-blue-50 py-16">
       <div className="container mx-auto px-4 text-center">
@@ -9,9 +13,16 @@ const Support = () => {
           Our expert technicians are ready to assist you with setup, troubleshooting, and maintenance.
           Get professional support for all your printing needs.
         </p>
-        <Button className="bg-primary hover:bg-primary/90">
+        <Button 
+          className="bg-primary hover:bg-primary/90"
+          onClick={() => setShowForm(true)}
+        >
           Visit Support Center
         </Button>
+        <SupportForm 
+          open={showForm} 
+          onOpenChange={setShowForm}
+        />
       </div>
     </section>
   );
