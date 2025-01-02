@@ -4,13 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
+import { updateQuantity } from "@/store/cartSlice";
 import CartItem from "./CartItem";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const cartTotal = useSelector((state: RootState) => state.cart.total);
 
@@ -19,6 +21,10 @@ const Navbar = () => {
     if (searchQuery.trim()) {
       navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
     }
+  };
+
+  const handleQuantityChange = (id: number, quantity: number) => {
+    dispatch(updateQuantity({ id, quantity }));
   };
 
   return (
@@ -76,7 +82,11 @@ const Navbar = () => {
                   ) : (
                     <div className="space-y-4">
                       {cartItems.map((item) => (
-                        <CartItem key={item.id} {...item} />
+                        <CartItem 
+                          key={item.id} 
+                          {...item} 
+                          onQuantityChange={handleQuantityChange}
+                        />
                       ))}
                       <div className="pt-4 border-t">
                         <div className="flex justify-between font-medium mb-4">
