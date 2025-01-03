@@ -13,20 +13,20 @@ const popularProducts = [
     category: "printers"
   },
   {
-    id: 6,
-    name: "Premium Color Pack",
-    price: 89.99,
-    description: "High-yield color cartridge set for professional printing needs",
-    image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500",
-    category: "cartridges"
-  },
-  {
     id: 2,
     name: "ColorJet X3000",
     price: 449.99,
     description: "Professional color laser printer for high-quality outputs",
     image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500",
     category: "printers"
+  },
+  {
+    id: 6,
+    name: "Premium Color Pack",
+    price: 89.99,
+    description: "High-yield color cartridge set for professional printing needs",
+    image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500",
+    category: "cartridges"
   },
   {
     id: 7,

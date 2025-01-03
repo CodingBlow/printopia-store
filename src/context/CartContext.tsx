@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 interface CartItem {
   id: number;
@@ -33,8 +33,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       }
       return [...currentItems, { ...item, quantity: 1 }];
     });
-    toast({
-      title: "Added to cart",
+    toast.success("Added to cart", {
       description: `${item.name} has been added to your cart.`,
     });
   };
@@ -49,6 +48,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const removeFromCart = (id: number) => {
     setItems(items => items.filter(item => item.id !== id));
+    toast.success("Item removed", {
+      description: "The item has been removed from your cart.",
+    });
   };
 
   const clearCart = () => {
@@ -56,9 +58,17 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const checkout = () => {
-    toast({
-      title: "Order placed successfully!",
-      description: "Our team will contact you shortly for further details.",
+    if (items.length === 0) {
+      toast.error("Cart is empty", {
+        description: "Please add items to your cart before checking out.",
+      });
+      return;
+    }
+
+    // Here you would typically integrate with a payment processor
+    // For now, we'll just simulate a successful checkout
+    toast.success("Order placed successfully!", {
+      description: "Thank you for your purchase. We'll contact you shortly.",
     });
     clearCart();
   };
