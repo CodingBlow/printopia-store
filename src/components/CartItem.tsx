@@ -8,7 +8,7 @@ interface CartItemProps {
   name: string;
   price: number;
   quantity: number;
-  category?: string; // Made optional with ?
+  category?: string;
   image?: string;
   onQuantityChange: (id: number, newQuantity: number) => void;
 }
@@ -54,6 +54,7 @@ const CartItem = ({ id, name, price, quantity, category, image, onQuantityChange
             size="icon"
             className="h-8 w-8"
             onClick={handleDecrement}
+            disabled={quantity <= 1}
           >
             <Minus className="h-4 w-4" />
           </Button>

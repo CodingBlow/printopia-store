@@ -8,7 +8,7 @@ const popularProducts = [
     id: 1,
     name: "Enterprise LaserJet Pro",
     price: 599.99,
-    description: "High-speed professional printer for large offices",
+    description: "High-speed professional printer with advanced networking capabilities",
     image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500",
     category: "printers"
   },
@@ -16,7 +16,7 @@ const popularProducts = [
     id: 6,
     name: "Premium Color Pack",
     price: 89.99,
-    description: "High-yield color cartridge set",
+    description: "High-yield color cartridge set for professional printing needs",
     image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500",
     category: "cartridges"
   },
@@ -24,7 +24,7 @@ const popularProducts = [
     id: 2,
     name: "ColorJet X3000",
     price: 449.99,
-    description: "Advanced color laser printer with networking",
+    description: "Professional color laser printer for high-quality outputs",
     image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500",
     category: "printers"
   },
@@ -32,7 +32,7 @@ const popularProducts = [
     id: 7,
     name: "XL Black Cartridge",
     price: 49.99,
-    description: "Extended life black cartridge",
+    description: "Extended life black cartridge for maximum printing efficiency",
     image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500",
     category: "cartridges"
   }
@@ -46,16 +46,17 @@ const PopularProducts = () => {
       id: product.id,
       name: product.name,
       price: product.price,
-      category: product.category
+      category: product.category,
+      image: product.image
     }));
   };
 
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-4">Popular Products</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">Featured Products</h2>
         <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Discover our most popular printers and cartridges, trusted by businesses worldwide
+          Discover our selection of high-quality printers and supplies for your business needs
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {popularProducts.map((product) => (
