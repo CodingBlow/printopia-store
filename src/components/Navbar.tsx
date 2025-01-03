@@ -6,8 +6,9 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { updateQuantity } from "@/store/cartSlice";
+import { updateQuantity, clearCart } from "@/store/cartSlice";
 import CartItem from "./CartItem";
+import { toast } from "./ui/use-toast";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +26,23 @@ const Navbar = () => {
 
   const handleQuantityChange = (id: number, quantity: number) => {
     dispatch(updateQuantity({ id, quantity }));
+  };
+
+  const handleCheckout = () => {
+    if (cartItems.length === 0) {
+      toast({
+        title: "Cart is empty",
+        description: "Please add items to your cart before checking out.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    toast({
+      title: "Order placed successfully!",
+      description: "Thank you for your purchase. We'll process your order shortly.",
+    });
+    dispatch(clearCart());
   };
 
   return (
@@ -93,7 +111,12 @@ const Navbar = () => {
                           <span>Total</span>
                           <span>${cartTotal.toFixed(2)}</span>
                         </div>
-                        <Button className="w-full">Checkout</Button>
+                        <Button 
+                          className="w-full"
+                          onClick={handleCheckout}
+                        >
+                          Checkout
+                        </Button>
                       </div>
                     </div>
                   )}
