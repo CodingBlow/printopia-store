@@ -4,6 +4,7 @@ import Categories from "@/components/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import PopularProducts from "@/components/PopularProducts";
 import Support from "@/components/Support";
+import Disclaimer from "@/components/Disclaimer";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -16,6 +17,7 @@ const Index = () => {
         <PopularProducts />
         <FeaturedProducts />
         <Support />
+        <Disclaimer />
       </main>
       <Footer />
     </div>
