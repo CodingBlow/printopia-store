@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Printer, ShoppingCart, Package, Wrench, ChevronRight } from "lucide-react";
+import { Printer, ShoppingCart, Package, Wrench } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import CartItem from "@/components/CartItem";
 import CheckoutForm, { CheckoutFormData } from "@/components/CheckoutForm";
 import OrderSuccess from "@/components/OrderSuccess";
 
-const categories = [
+export const categories = [
   {
     id: "printers",
     name: "Professional Laser Printers",
@@ -253,36 +253,38 @@ const Products = () => {
             .find(cat => cat.id === selectedCategory)
             ?.products.map((product) => (
               <Card key={product.id} className="flex flex-col">
-                <CardHeader>
-                  <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardTitle className="flex items-center gap-2">
-                    {product.name}
-                  </CardTitle>
-                  <Badge variant="secondary" className="w-fit">
-                    {categories.find(cat => cat.id === selectedCategory)?.name}
-                  </Badge>
-                </CardHeader>
+                <Link to={`/product/${product.id}`}>
+                  <CardHeader>
+                    <div className="aspect-video w-full overflow-hidden rounded-lg mb-4">
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <CardTitle className="flex items-center gap-2">
+                      {product.name}
+                    </CardTitle>
+                    <Badge variant="secondary" className="w-fit">
+                      {categories.find(cat => cat.id === selectedCategory)?.name}
+                    </Badge>
+                  </CardHeader>
+                </Link>
                 <CardContent>
                   <p className="text-gray-600">{product.description}</p>
                   <p className="text-lg font-bold mt-2">${product.price}</p>
                 </CardContent>
                 <CardFooter className="mt-auto">
                   <Button 
-                    className="w-full gap-2"
+                    className="w-full"
                     onClick={() => addToCart({
                       id: product.id,
                       name: product.name,
-                      price: product.price
+                      price: product.price,
+                      image: product.image
                     })}
                   >
                     Add to Cart
-                    <ChevronRight className="h-4 w-4" />
                   </Button>
                 </CardFooter>
               </Card>
