@@ -23,19 +23,19 @@ const Blog = () => {
           {blogPosts.map((post) => (
             <Card 
               key={post.id}
-              className="cursor-pointer hover:shadow-lg transition-shadow"
+              className="cursor-pointer hover:shadow-lg transition-shadow h-full flex flex-col"
               onClick={() => setSelectedPost(post)}
             >
               <div className="aspect-video w-full overflow-hidden">
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform hover:scale-105"
                 />
               </div>
-              <CardHeader>
-                <CardTitle className="text-xl">{post.title}</CardTitle>
-                <div className="flex items-center gap-4 text-sm text-gray-500">
+              <CardHeader className="flex-grow">
+                <CardTitle className="text-xl mb-3 line-clamp-2">{post.title}</CardTitle>
+                <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
                     {new Date(post.date).toLocaleDateString()}
@@ -45,21 +45,19 @@ const Blog = () => {
                     {post.author}
                   </div>
                 </div>
+                <p className="text-gray-600 line-clamp-3">{post.excerpt}</p>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{post.excerpt}</p>
-              </CardContent>
             </Card>
           ))}
         </div>
 
         <Dialog open={!!selectedPost} onOpenChange={() => setSelectedPost(null)}>
-          <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
             {selectedPost && (
               <>
                 <DialogHeader>
-                  <DialogTitle className="text-2xl">{selectedPost.title}</DialogTitle>
-                  <div className="flex items-center gap-4 text-sm text-gray-500 mt-2">
+                  <DialogTitle className="text-2xl font-bold mb-4">{selectedPost.title}</DialogTitle>
+                  <div className="flex items-center gap-4 text-sm text-gray-500 mt-2 flex-wrap">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {new Date(selectedPost.date).toLocaleDateString()}
@@ -74,7 +72,7 @@ const Blog = () => {
                     </div>
                   </div>
                 </DialogHeader>
-                <div className="aspect-video w-full overflow-hidden mb-6">
+                <div className="aspect-video w-full overflow-hidden rounded-lg mb-6">
                   <img
                     src={selectedPost.image}
                     alt={selectedPost.title}
@@ -82,7 +80,9 @@ const Blog = () => {
                   />
                 </div>
                 <div className="prose max-w-none">
-                  <p>{selectedPost.content}</p>
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                    {selectedPost.content}
+                  </p>
                 </div>
               </>
             )}

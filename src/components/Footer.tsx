@@ -33,8 +33,11 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p>&copy; {new Date().getFullYear()} PrintTech. All rights reserved.</p>
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          <p className="text-sm text-gray-400 mb-4 max-w-3xl mx-auto text-center">
+            PrintTech is an independent retailer specializing in the sale of printers, accessories, and support services. Our technical support is intended for our products and services only. We do not represent or claim affiliation with any third-party brands or manufacturers unless explicitly stated. All trademarks and product names are the property of their respective owners.
+          </p>
+          <p className="text-center">&copy; {new Date().getFullYear()} PrintTech. All rights reserved.</p>
         </div>
       </div>
     </footer>
