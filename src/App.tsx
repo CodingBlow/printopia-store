@@ -18,6 +18,7 @@ import Shipping from "./pages/Shipping";
 import FAQ from "./pages/FAQ";
 import Returns from "./pages/Returns";
 import About from "./pages/About";
+import SetupGuide from "./pages/SetupGuide";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/faq" element={<FAQ />} />
               <Route path="/returns" element={<Returns />} />
               <Route path="/about" element={<About />} />
+              <Route path="/setup-guide" element={<SetupGuide />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>
