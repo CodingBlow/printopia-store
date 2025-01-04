@@ -9,9 +9,12 @@ import { RootState } from "@/store/store";
 import { updateQuantity, clearCart } from "@/store/cartSlice";
 import CartItem from "./CartItem";
 import { toast } from "./ui/use-toast";
+import CheckoutForm from "./CheckoutForm";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -28,7 +31,17 @@ const Navbar = () => {
     dispatch(updateQuantity({ id, quantity }));
   };
 
-  const handleCheckout = () => {
+  const handleCheckoutSubmit = (data: any) => {
+    console.log('Order details:', { items: cartItems, total: cartTotal, ...data });
+    toast({
+      title: "Order placed successfully!",
+      description: "Thank you for your purchase. We'll process your order shortly.",
+    });
+    dispatch(clearCart());
+    setShowCheckoutForm(false);
+  };
+
+  const handleCheckoutClick = () => {
     if (cartItems.length === 0) {
       toast({
         title: "Cart is empty",
@@ -37,12 +50,7 @@ const Navbar = () => {
       });
       return;
     }
-    
-    toast({
-      title: "Order placed successfully!",
-      description: "Thank you for your purchase. We'll process your order shortly.",
-    });
-    dispatch(clearCart());
+    setShowCheckoutForm(true);
   };
 
   return (
@@ -55,9 +63,9 @@ const Navbar = () => {
           
           <div className="hidden md:flex items-center space-x-8">
             <a href="/products" className="text-gray-700 hover:text-primary transition-colors">Products</a>
-            <a href="/support" className="text-gray-700 hover:text-primary transition-colors">Support</a>
             <a href="/blog" className="text-gray-700 hover:text-primary transition-colors">Blog</a>
             <a href="/contact" className="text-gray-700 hover:text-primary transition-colors">Contact</a>
+            <a href="/support" className="text-gray-700 hover:text-primary transition-colors">Setup Guide</a>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -111,12 +119,22 @@ const Navbar = () => {
                           <span>Total</span>
                           <span>${cartTotal.toFixed(2)}</span>
                         </div>
-                        <Button 
-                          className="w-full"
-                          onClick={handleCheckout}
-                        >
-                          Checkout
-                        </Button>
+                        <Dialog open={showCheckoutForm} onOpenChange={setShowCheckoutForm}>
+                          <DialogTrigger asChild>
+                            <Button 
+                              className="w-full"
+                              onClick={handleCheckoutClick}
+                            >
+                              Checkout
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
+                            <DialogHeader>
+                              <DialogTitle>Checkout</DialogTitle>
+                            </DialogHeader>
+                            <CheckoutForm onSubmit={handleCheckoutSubmit} />
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     </div>
                   )}

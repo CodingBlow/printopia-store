@@ -15,19 +15,27 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-between">
           <div className="md:w-1/2 mb-8 md:mb-0">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate-fadeIn">
-              Professional Printing Solutions
+              Premium Printing Solutions
             </h1>
             <p className="text-lg text-gray-600 mb-8 animate-fadeIn max-w-lg">
-              Get premium printers with expert setup assistance and lifetime support. 
-              Trusted by businesses worldwide for reliable printing solutions.
+              Discover our wide range of high-quality printers and supplies. Get the best deals on top brands with fast shipping and expert setup guidance included.
             </p>
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
-              onClick={() => window.location.href = '/products'}
-            >
-              Explore Products
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+            <div className="flex gap-4">
+              <Button 
+                className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2"
+                onClick={() => window.location.href = '/products'}
+              >
+                Shop Now
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => window.location.href = '/support'}
+                className="text-primary"
+              >
+                Setup Guide
+              </Button>
+            </div>
           </div>
           <div className="md:w-1/2">
             <img
