@@ -19,6 +19,7 @@ import FAQ from "./pages/FAQ";
 import Returns from "./pages/Returns";
 import About from "./pages/About";
 import SetupGuide from "./pages/SetupGuide";
+import DriverDownload from "./pages/DriverDownload";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
               <Route path="/returns" element={<Returns />} />
               <Route path="/about" element={<About />} />
               <Route path="/setup-guide" element={<SetupGuide />} />
+              <Route path="/driver-download" element={<DriverDownload />} />
             </Routes>
           </BrowserRouter>
         </CartProvider>

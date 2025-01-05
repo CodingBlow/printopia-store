@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -34,6 +34,14 @@ const Hero = () => {
                 className="text-primary"
               >
                 Setup Guide
+              </Button>
+              <Button 
+                variant="secondary"
+                onClick={() => window.location.href = '/driver-download'}
+                className="flex items-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                Download Drivers
               </Button>
             </div>
           </div>
