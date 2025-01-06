@@ -23,35 +23,37 @@ import DriverDownload from "./pages/DriverDownload";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
+function App() {
+  return (
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
         <CartProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/support" element={<Support />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/shipping" element={<Shipping />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/returns" element={<Returns />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/setup-guide" element={<SetupGuide />} />
-              <Route path="/driver-download" element={<DriverDownload />} />
-            </Routes>
-          </BrowserRouter>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/support" element={<Support />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/shipping" element={<Shipping />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/returns" element={<Returns />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/setup-guide" element={<SetupGuide />} />
+                <Route path="/driver-download" element={<DriverDownload />} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
         </CartProvider>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </Provider>
-);
+      </QueryClientProvider>
+    </Provider>
+  );
+}
 
 export default App;
