@@ -1,22 +1,29 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Search } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <div className="relative min-h-[80vh] bg-gradient-to-r from-blue-50 to-blue-100">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d')] bg-cover bg-center opacity-5" />
-      <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-transparent" />
+    <div className="relative min-h-[85vh] bg-gradient-to-r from-gray-50 to-gray-100 overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1498050108023-c5249f4df085')] bg-cover bg-center opacity-5" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent" />
+      
       <div className="container mx-auto px-4 relative z-10 h-full">
-        <div className="flex flex-col md:flex-row items-center justify-between min-h-[80vh] gap-8">
-          <div className="md:w-1/2 space-y-6 animate-fadeIn">
+        <div className="flex flex-col md:flex-row items-center justify-between min-h-[85vh] gap-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="md:w-1/2 space-y-6"
+          >
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-              Professional Printing
+              Next Generation
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 block">
-                Solutions
+                Printing Solutions
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-lg">
-              Experience superior quality printing with our advanced technology and expert support. Perfect for both home and business needs.
+              Experience unparalleled quality and efficiency with our advanced printing technology. Perfect for both home and business needs.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 
@@ -30,37 +37,30 @@ const Hero = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                onClick={() => window.location.href = '/driver-download'}
+                onClick={() => window.location.href = '/support'}
                 className="group"
               >
-                <Download className="mr-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
-                Download Drivers
+                Get Support
               </Button>
             </div>
-            <div className="relative mt-8">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-lg -z-10 blur-xl" />
-              <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-lg p-4 shadow-lg">
-                <div className="flex items-center gap-2">
-                  <Search className="h-5 w-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search for products or drivers..."
-                    className="bg-transparent border-none outline-none flex-1 text-gray-700 placeholder-gray-400"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="md:w-1/2 relative">
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="md:w-1/2 relative"
+          >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-full -z-10 blur-3xl" />
             <img
               src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6"
               alt="Featured Printer"
               className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
+      
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
     </div>
   );
