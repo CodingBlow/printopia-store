@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -17,30 +17,31 @@ const Hero = () => {
             className="md:w-1/2 space-y-6"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-              Next Generation
+              Premium Printing
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 block">
-                Printing Solutions
+                Solutions & Support
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-lg">
-              Experience unparalleled quality and efficiency with our advanced printing technology. Perfect for both home and business needs.
+              Discover our high-quality printers and supplies, backed by expert technical support to ensure your perfect printing experience.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white group"
-                onClick={() => window.location.href = '/products'}
+                onClick={() => window.location.href = '/setup-guide'}
               >
-                Explore Products
+                Setup Your Printer
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 
                 variant="outline"
                 size="lg"
-                onClick={() => window.location.href = '/support'}
+                onClick={() => window.location.href = '/driver-download'}
                 className="group"
               >
-                Get Support
+                Download Drivers
+                <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
               </Button>
             </div>
           </motion.div>
