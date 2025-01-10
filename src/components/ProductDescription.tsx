@@ -33,16 +33,7 @@ const ProductDescription = ({ product, category }: ProductDescriptionProps) => {
 
   return (
     <div className="grid md:grid-cols-2 gap-8 mb-16">
-      <div className="space-y-4">
-        <div className="aspect-square overflow-hidden rounded-lg border bg-white">
-          <img 
-            src={product.image} 
-            alt={product.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-      <div className="space-y-6">
+      <div className="space-y-6 order-2 md:order-1">
         <div>
           <Badge variant="secondary" className="mb-2">
             {category}
@@ -68,6 +59,15 @@ const ProductDescription = ({ product, category }: ProductDescriptionProps) => {
         >
           Add to Cart
         </Button>
+      </div>
+      <div className="space-y-4 order-1 md:order-2">
+        <div className="aspect-square overflow-hidden rounded-lg border bg-white">
+          <img 
+            src={product.image} 
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     </div>
   );
