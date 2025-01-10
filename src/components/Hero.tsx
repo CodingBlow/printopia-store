@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download, Settings, CheckCircle } from "lucide-react";
 import PrinterSupportPopup from "./PrinterSupportPopup";
 
 const Hero = () => {
@@ -12,70 +12,95 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-top" />
-      <div className="relative pt-20 pb-16 md:pt-24 md:pb-20">
+      <div className="relative pt-16 pb-12 md:pt-20 md:pb-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1 space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-                Professional Printing
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 block">
-                  Made Simple
-                </span>
-              </h1>
-              <p className="text-xl text-gray-600">
-                Explore premium printers and accessories designed for hassle-free setup. 
-                Access our comprehensive guides and drivers for seamless printing.
-              </p>
-              <ul className="text-gray-600 space-y-2 inline-block text-left">
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                  Quick & Easy Setup Resources
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                  Compatible with Major Printer Brands
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                  Reliable Support for Product Purchases
-                </li>
-              </ul>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-4"
+              >
+                <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight">
+                  Printer Setup
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 block">
+                    Made Easy
+                  </span>
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-600 font-medium">
+                  Get your printer up and running in minutes
+                </p>
+              </motion.div>
+
               <motion.div 
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
               >
                 <Button
                   size="lg"
-                  className="group relative overflow-hidden bg-white border-2 border-primary hover:border-primary/80 text-primary hover:text-primary/80"
-                  onClick={() => navigate("/driver-download")}
+                  className="h-16 text-xl font-bold group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  onClick={() => navigate("/setup-guide")}
                 >
-                  <span className="relative z-10">Shop Now</span>
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform relative z-10" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                  <Settings className="mr-2 h-6 w-6 animate-spin-slow" />
+                  Setup Wizard
+                  <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
+
                 <Button
                   size="lg"
-                  className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white animate-pulse hover:animate-none hover:scale-105 transition-transform duration-200"
-                  onClick={() => setIsPopupOpen(true)}
+                  className="h-16 text-xl font-bold group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  onClick={() => navigate("/driver-download")}
                 >
-                  <span className="relative z-10">Get Support</span>
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform relative z-10" />
+                  <Download className="mr-2 h-6 w-6" />
+                  Download Drivers
                 </Button>
               </motion.div>
+
+              <motion.div 
+                className="pt-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <div className="bg-blue-50 p-6 rounded-xl">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Smart Setup Features:</h3>
+                  <ul className="space-y-4 text-lg font-medium">
+                    <li className="flex items-center gap-3">
+                      <CheckCircle className="h-6 w-6 text-green-600" />
+                      Automatic Printer Detection
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle className="h-6 w-6 text-green-600" />
+                      Compatible with All Major Brands
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle className="h-6 w-6 text-green-600" />
+                      Step-by-Step Configuration Guide
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
             </div>
-            <div className="order-1 md:order-2">
-              <img 
-                src="/placeholder.svg" 
-                alt="Printer illustration" 
-                className="w-full h-auto rounded-lg shadow-xl animate-fadeIn"
-              />
-            </div>
+
+            <motion.div 
+              className="order-1 md:order-2"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
+              <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80"
+                  alt="Printer Setup Wizard" 
+                  className="w-full h-[400px] md:h-[500px] object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                  <div className="text-white text-xl md:text-2xl font-bold">Universal Setup Solution</div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
-      <PrinterSupportPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </section>
   );
 };

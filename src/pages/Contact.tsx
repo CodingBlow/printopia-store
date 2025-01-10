@@ -7,13 +7,45 @@ import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 
+const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    try {
+      const telegramMessage = `New message from ${name} (${email}):\n\n${message}`;
+      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: telegramMessage,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you as soon as possible.",
+        });
+      } else {
+        throw new Error("Failed to send message.");
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was an issue sending your message. Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -21,7 +53,7 @@ const Contact = () => {
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-8">Contact Us</h1>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
@@ -30,13 +62,13 @@ const Contact = () => {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Input placeholder="Your Name" required />
+                  <Input name="name" placeholder="Your Name" required />
                 </div>
                 <div>
-                  <Input type="email" placeholder="Your Email" required />
+                  <Input name="email" type="email" placeholder="Your Email" required />
                 </div>
                 <div>
-                  <Textarea placeholder="Your Message" className="min-h-[150px]" required />
+                  <Textarea name="message" placeholder="Your Message" className="min-h-[150px]" required />
                 </div>
                 <Button type="submit" className="w-full">Send Message</Button>
               </form>

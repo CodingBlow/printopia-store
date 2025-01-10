@@ -65,7 +65,7 @@ const Navbar = () => {
             <a href="/products" className="text-gray-700 hover:text-primary transition-colors">Products</a>
             <a href="/blog" className="text-gray-700 hover:text-primary transition-colors">Blog</a>
             <a href="/contact" className="text-gray-700 hover:text-primary transition-colors">Contact</a>
-            <a href="/support" className="text-gray-700 hover:text-primary transition-colors">Setup Guide</a>
+            <a href="/setup-guide" className="text-gray-700 hover:text-primary transition-colors">Setup Guide</a>
           </div>
 
           <div className="flex items-center space-x-4">
