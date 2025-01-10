@@ -14,8 +14,8 @@ const Hero = () => {
       <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-top" />
       <div className="relative pt-16 pb-12 md:pt-20 md:pb-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="order-2 md:order-1 space-y-6">
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="flex flex-col justify-start space-y-6">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -83,11 +83,11 @@ const Hero = () => {
             </div>
 
             <motion.div 
-              className="order-1 md:order-2"
+              className="flex items-end h-full"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <div className="relative rounded-xl overflow-hidden shadow-2xl">
+              <div className="relative w-full rounded-xl overflow-hidden shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80"
                   alt="Printer Setup Wizard" 
