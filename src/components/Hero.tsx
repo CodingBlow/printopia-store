@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative min-h-[85vh] bg-gradient-to-r from-gray-50 to-gray-100 overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1498050108023-c5249f4df085')] bg-cover bg-center opacity-5" />
@@ -17,19 +20,37 @@ const Hero = () => {
             className="md:w-1/2 space-y-6"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-              Premium Printing
+              Professional Printing
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 block">
-                Solutions & Support
+                Made Easy for You
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-lg">
-              Discover our high-quality printers and supplies, backed by expert technical support to ensure your perfect printing experience.
+              Get your printer up and running in minutes with our step-by-step setup guide. 
+              Experience hassle-free printing with expert support and premium drivers.
             </p>
+            <ul className="text-gray-600 space-y-2">
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                Quick & Easy Setup Process
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                Compatible with All Major Printer Models
+              </li>
+              <li className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                24/7 Technical Support Available
+              </li>
+            </ul>
             <div className="flex flex-wrap gap-4">
               <Button 
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white group"
-                onClick={() => window.location.href = '/setup-guide'}
+                onClick={() => {
+                  navigate('/driver-download');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
               >
                 Setup Your Printer
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -37,7 +58,10 @@ const Hero = () => {
               <Button 
                 variant="outline"
                 size="lg"
-                onClick={() => window.location.href = '/driver-download'}
+                onClick={() => {
+                  navigate('/driver-download');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className="group"
               >
                 Download Drivers
