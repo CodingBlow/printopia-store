@@ -20,16 +20,19 @@ const Contact = () => {
 
     try {
       const telegramMessage = `New message from ${name} (${email}):\n\n${message}`;
-      const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: telegramMessage,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: telegramMessage,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         toast({
@@ -42,7 +45,8 @@ const Contact = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "There was an issue sending your message. Please try again later.",
+        description:
+          "There was an issue sending your message. Please try again later.",
         variant: "destructive",
       });
     }
@@ -65,12 +69,24 @@ const Contact = () => {
                   <Input name="name" placeholder="Your Name" required />
                 </div>
                 <div>
-                  <Input name="email" type="email" placeholder="Your Email" required />
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Your Email"
+                    required
+                  />
                 </div>
                 <div>
-                  <Textarea name="message" placeholder="Your Message" className="min-h-[150px]" required />
+                  <Textarea
+                    name="message"
+                    placeholder="Your Message"
+                    className="min-h-[150px]"
+                    required
+                  />
                 </div>
-                <Button type="submit" className="w-full">Send Message</Button>
+                <Button type="submit" className="w-full">
+                  Send Message
+                </Button>
               </form>
             </CardContent>
           </Card>
@@ -82,7 +98,9 @@ const Contact = () => {
                   <MapPin className="h-6 w-6 text-primary" />
                   <div>
                     <h3 className="font-semibold">Address</h3>
-                    <p className="text-gray-600">123 Printer Street, Tech City, TC 12345</p>
+                    <p className="text-gray-600">
+                      123 Printer Street, Tech City, TC 12345
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -106,7 +124,7 @@ const Contact = () => {
                   <Mail className="h-6 w-6 text-primary" />
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-600">support@printtech.com</p>
+                    <p className="text-gray-600">support@Monto-Print.com</p>
                   </div>
                 </div>
               </CardContent>

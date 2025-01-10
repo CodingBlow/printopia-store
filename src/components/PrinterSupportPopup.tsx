@@ -119,7 +119,7 @@ const PrinterSupportPopup = ({ isOpen, onClose }: PrinterSupportPopupProps) => {
                   name="model"
                   value={formData.model}
                   onChange={handleChange}
-                  placeholder="HP LaserJet Pro M404n"
+                  placeholder="LaserJet Pro M674n"
                   required
                 />
               </div>

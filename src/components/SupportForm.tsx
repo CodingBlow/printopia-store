@@ -172,7 +172,7 @@ Brand: ${data.brand}
                 <FormItem>
                   <FormLabel>Printer Brand</FormLabel>
                   <FormControl>
-                    <Input placeholder="HP" {...field} />
+                    <Input placeholder="Brand Name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -2,7 +2,13 @@ import { useState } from "react";
 import { Search, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
@@ -10,7 +16,13 @@ import { updateQuantity, clearCart } from "@/store/cartSlice";
 import CartItem from "./CartItem";
 import { toast } from "./ui/use-toast";
 import CheckoutForm from "./CheckoutForm";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,10 +44,15 @@ const Navbar = () => {
   };
 
   const handleCheckoutSubmit = (data: any) => {
-    console.log('Order details:', { items: cartItems, total: cartTotal, ...data });
+    console.log("Order details:", {
+      items: cartItems,
+      total: cartTotal,
+      ...data,
+    });
     toast({
       title: "Order placed successfully!",
-      description: "Thank you for your purchase. We'll process your order shortly.",
+      description:
+        "Thank you for your purchase. We'll process your order shortly.",
     });
     dispatch(clearCart());
     setShowCheckoutForm(false);
@@ -58,14 +75,36 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-primary">PrintTech</a>
+            <a href="/" className="text-2xl font-bold text-primary">
+              Monto-Print
+            </a>
           </div>
-          
+
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/products" className="text-gray-700 hover:text-primary transition-colors">Products</a>
-            <a href="/blog" className="text-gray-700 hover:text-primary transition-colors">Blog</a>
-            <a href="/contact" className="text-gray-700 hover:text-primary transition-colors">Contact</a>
-            <a href="/setup-guide" className="text-gray-700 hover:text-primary transition-colors">Setup Guide</a>
+            <a
+              href="/products"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
+              Products
+            </a>
+            <a
+              href="/blog"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
+              Blog
+            </a>
+            <a
+              href="/contact"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
+              Contact
+            </a>
+            <a
+              href="/setup-guide"
+              className="text-gray-700 hover:text-primary transition-colors"
+            >
+              Setup Guide
+            </a>
           </div>
 
           <div className="flex items-center space-x-4">
@@ -77,16 +116,16 @@ const Navbar = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <Button 
-                type="submit" 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                type="submit"
+                variant="ghost"
+                size="icon"
                 className="absolute right-0 top-0"
               >
                 <Search className="h-5 w-5" />
               </Button>
             </form>
-            
+
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="relative">
@@ -108,9 +147,9 @@ const Navbar = () => {
                   ) : (
                     <div className="space-y-4">
                       {cartItems.map((item) => (
-                        <CartItem 
-                          key={item.id} 
-                          {...item} 
+                        <CartItem
+                          key={item.id}
+                          {...item}
                           onQuantityChange={handleQuantityChange}
                         />
                       ))}
@@ -119,9 +158,12 @@ const Navbar = () => {
                           <span>Total</span>
                           <span>${cartTotal.toFixed(2)}</span>
                         </div>
-                        <Dialog open={showCheckoutForm} onOpenChange={setShowCheckoutForm}>
+                        <Dialog
+                          open={showCheckoutForm}
+                          onOpenChange={setShowCheckoutForm}
+                        >
                           <DialogTrigger asChild>
-                            <Button 
+                            <Button
                               className="w-full"
                               onClick={handleCheckoutClick}
                             >
