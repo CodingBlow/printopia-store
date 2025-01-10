@@ -43,31 +43,49 @@ const Hero = () => {
                 24/7 Technical Support Available
               </li>
             </ul>
-            <div className="flex flex-wrap gap-4">
-              <Button 
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white group"
-                onClick={() => {
-                  navigate('/driver-download');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+            <motion.div 
+              className="flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Setup Your Printer
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button 
-                variant="outline"
-                size="lg"
-                onClick={() => {
-                  navigate('/driver-download');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="group"
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  onClick={() => {
+                    navigate('/driver-download');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                >
+                  <span className="relative z-10">Setup Your Printer</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform relative z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+              </motion.div>
+              
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Download Drivers
-                <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
-              </Button>
-            </div>
+                <Button 
+                  variant="outline"
+                  size="lg"
+                  onClick={() => {
+                    navigate('/driver-download');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="group border-2 border-blue-600 hover:bg-blue-50 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+                >
+                  <span className="relative z-10">Download Drivers</span>
+                  <Download className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform relative z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+              </motion.div>
+            </motion.div>
           </motion.div>
           
           <motion.div 
