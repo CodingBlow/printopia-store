@@ -22,25 +22,24 @@ const Hero = () => {
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
               Professional Printing
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 block">
-                Made Easy for You
+                Made Simple
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-lg">
-              Get your printer up and running in minutes with our step-by-step setup guide. 
-              Experience hassle-free printing with expert support and premium drivers.
+              Explore premium printers and accessories designed for hassle-free setup. Access our comprehensive guides and drivers for seamless printing.
             </p>
             <ul className="text-gray-600 space-y-2">
               <li className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                Quick & Easy Setup Process
+                Quick & Easy Setup Resources
               </li>
               <li className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                Compatible with All Major Printer Models
+                Compatible with Major Printer Brands
               </li>
               <li className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                24/7 Technical Support Available
+                Reliable Support for Product Purchases
               </li>
             </ul>
             <motion.div 
@@ -61,7 +60,7 @@ const Hero = () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                 >
-                  <span className="relative z-10">Setup Your Printer</span>
+                  <span className="relative z-10">Shop Now</span>
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform relative z-10" />
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
