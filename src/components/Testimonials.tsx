@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import sarah from "../images/Sarah.png";
+import michael from "../images/Michel.png";
+import emily from "../images/Emily.png";
 
 const testimonials = [
   {
@@ -7,21 +10,21 @@ const testimonials = [
     role: "Small Business Owner",
     content: "The print quality and reliability have transformed our business operations. The color accuracy and consistency are remarkable, and the support team has been exceptional in helping us optimize our workflow.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&auto=format&fit=crop&crop=faces,center"
+    image: sarah,
   },
   {
     name: "Michael Chen",
     role: "Creative Director",
     content: "As a creative professional, color accuracy is crucial for our work. These printers have exceeded our expectations with their exceptional print quality and reliability. The software integration is seamless.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&auto=format&fit=crop&crop=faces,center"
+    image: michael,
   },
   {
     name: "Emily Williams",
     role: "Office Manager",
     content: "The support team is incredible. They've helped us optimize our printing workflow and reduce costs. The printer's efficiency and reliability have significantly improved our productivity.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=400&auto=format&fit=crop&crop=faces,center"
+    image: emily,
   },
 ];
 

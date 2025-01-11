@@ -91,6 +91,12 @@ const Navbar = () => {
 
             <div className="hidden md:flex items-center space-x-8">
               <a
+                href="/"
+                className="text-gray-700 hover:text-primary transition-colors font-medium"
+              >
+                Home
+              </a>
+              <a
                 href="/products"
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
               >
@@ -117,7 +123,10 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center space-x-4">
-              <form onSubmit={handleSearch} className="relative hidden md:block">
+              <form
+                onSubmit={handleSearch}
+                className="relative hidden md:block"
+              >
                 <Input
                   type="search"
                   placeholder="Search products..."
@@ -152,7 +161,9 @@ const Navbar = () => {
                   </SheetHeader>
                   <div className="mt-8">
                     {cartItems.length === 0 ? (
-                      <p className="text-muted-foreground">Your cart is empty</p>
+                      <p className="text-muted-foreground">
+                        Your cart is empty
+                      </p>
                     ) : (
                       <div className="space-y-4">
                         {cartItems.map((item) => (

@@ -11,6 +11,15 @@ import { Badge } from "@/components/ui/badge";
 import CartItem from "@/components/CartItem";
 import CheckoutForm, { CheckoutFormData } from "@/components/CheckoutForm";
 import OrderSuccess from "@/components/OrderSuccess";
+import XLBlack from "../images/XL Black Ink.jpg";
+import Premiumcartige from "../images/Primium cartig.png";
+import premuim from "../images/premuimjet.png";
+import colorjet from "../images/colorjet.png";
+import workforce from "../images/Workforce.png";
+import Ecojet from "../images/Ecojet.png";
+import xeroxlaser from "../images/xeroxlaser.png";
+import photoPrinter from "../images/PhotoPrinter.png";
+import EconomyPrint from "../images/EconomyPrint.png";
 
 export const categories = [
   {
@@ -23,37 +32,37 @@ export const categories = [
         name: "Enterprise LaserJet Pro",
         price: 599.99,
         description: "High-speed professional printer for large offices",
-        image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500"
+        image: premuim,
       },
       {
         id: 2,
         name: "ColorJet X3000",
         price: 449.99,
         description: "Advanced color laser printer with networking",
-        image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500"
+        image: colorjet,
       },
       {
         id: 3,
         name: "SmartPrint 5000",
         price: 699.99,
         description: "Smart-enabled professional printer",
-        image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500"
+        image: Premiumcartige,
       },
       {
         id: 4,
         name: "WorkForce Pro",
         price: 529.99,
         description: "Reliable workplace printer solution",
-        image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500"
+        image: workforce,
       },
       {
         id: 5,
         name: "EcoJet Premium",
         price: 399.99,
         description: "Eco-friendly professional printer",
-        image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500"
-      }
-    ]
+        image: Ecojet,
+      },
+    ],
   },
   {
     id: "cartridges",
@@ -65,37 +74,39 @@ export const categories = [
         name: "Premium Color Pack",
         price: 89.99,
         description: "High-yield color cartridge set",
-        image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500"
+        image: Premiumcartige,
       },
       {
         id: 7,
         name: "XL Black Cartridge",
         price: 49.99,
         description: "Extended life black cartridge",
-        image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500"
+        image: XLBlack,
       },
       {
         id: 8,
-        name: "Office Value Pack",
+        name: "Xerox Laser Printer",
         price: 129.99,
         description: "Complete office cartridge set",
-        image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500"
+        image: xeroxlaser,
       },
       {
         id: 9,
-        name: "Photo Print Pack",
+        name: "Colour Photo Printer",
         price: 69.99,
         description: "Photo-quality ink cartridges",
-        image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500"
+        image:
+          photoPrinter,
       },
       {
         id: 10,
         name: "Economy Pack",
         price: 79.99,
         description: "Value cartridge bundle",
-        image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500"
-      }
-    ]
+        image:
+          EconomyPrint,
+      },
+    ],
   },
   {
     id: "support",
@@ -107,38 +118,43 @@ export const categories = [
         name: "24/7 Priority Support",
         price: 199.99,
         description: "Round-the-clock technical assistance",
-        image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500"
+        image:
+          "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500",
       },
       {
         id: 12,
         name: "Annual Maintenance",
         price: 299.99,
         description: "Yearly maintenance and support package",
-        image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500"
+        image:
+          "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500",
       },
       {
         id: 13,
         name: "Business Support",
         price: 399.99,
         description: "Comprehensive business support solution",
-        image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500"
+        image:
+          "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500",
       },
       {
         id: 14,
         name: "Remote Assistance",
         price: 149.99,
         description: "Remote troubleshooting and support",
-        image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500"
+        image:
+          "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500",
       },
       {
         id: 15,
         name: "Setup Service",
         price: 99.99,
         description: "Professional printer setup service",
-        image: "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500"
-      }
-    ]
-  }
+        image:
+          "https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&q=80&w=500",
+      },
+    ],
+  },
 ];
 
 const Products = () => {
@@ -259,7 +275,7 @@ const Products = () => {
                       <img 
                         src={product.image} 
                         alt={product.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <CardTitle className="flex items-center gap-2">

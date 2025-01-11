@@ -30,7 +30,7 @@ const Blog = () => {
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                  className="w-full h-full object-contain transition-transform hover:scale-105"
                 />
               </div>
               <CardHeader className="flex-grow">
@@ -76,7 +76,7 @@ const Blog = () => {
                   <img
                     src={selectedPost.image}
                     alt={selectedPost.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="prose max-w-none">

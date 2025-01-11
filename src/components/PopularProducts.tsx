@@ -4,6 +4,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import XLBlack from "../images/XL Black Ink.jpg";
+import Premiumcartige from "../images/Primium cartig.png";
+import premuim from "../images/premuimjet.png";
+import colorjet from "../images/colorjet.png";
 
 const popularProducts = [
   {
@@ -11,7 +15,7 @@ const popularProducts = [
     name: "Enterprise LaserJet Pro",
     price: 599.99,
     description: "High-speed professional printer with advanced networking capabilities. Perfect for businesses with high-volume printing needs.",
-    image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500",
+    image: premuim,
     category: "printers",
     features: ["Up to 45 ppm", "Automatic duplex printing", "500-sheet input tray", "Network-ready"]
   },
@@ -20,7 +24,7 @@ const popularProducts = [
     name: "ColorJet X3000",
     price: 449.99,
     description: "Professional color laser printer for stunning outputs. Ideal for marketing materials and presentations.",
-    image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=500",
+    image: colorjet,
     category: "printers",
     features: ["4800 x 1200 dpi", "Wireless printing", "Touch screen display", "Energy efficient"]
   },
@@ -29,7 +33,7 @@ const popularProducts = [
     name: "Premium Color Pack",
     price: 89.99,
     description: "High-yield color cartridge set for professional printing needs. Long-lasting and vibrant colors.",
-    image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500",
+    image: Premiumcartige,
     category: "cartridges",
     features: ["6,000 page yield", "Fade-resistant", "Smudge-proof", "Eco-friendly"]
   },
@@ -38,7 +42,7 @@ const popularProducts = [
     name: "XL Black Cartridge",
     price: 49.99,
     description: "Extended life black cartridge for maximum printing efficiency. Perfect for text-heavy documents.",
-    image: "https://images.unsplash.com/photo-1563199284-752b7b17578a?auto=format&fit=crop&q=80&w=500",
+    image: XLBlack,
     category: "cartridges",
     features: ["10,000 page yield", "Quick-dry formula", "Sharp text quality", "Cost-effective"]
   }
@@ -86,7 +90,7 @@ const PopularProducts = () => {
                       <img 
                         src={product.image} 
                         alt={product.name}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <CardTitle className="text-xl">{product.name}</CardTitle>
