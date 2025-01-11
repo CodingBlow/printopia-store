@@ -13,7 +13,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-top" />
       <div className="relative pt-8 pb-8 sm:pt-12 md:pt-16 md:pb-12 lg:pt-20 lg:pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-start">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
             <div className="flex flex-col justify-start space-y-4 sm:space-y-6">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -32,13 +32,13 @@ const Hero = () => {
               </motion.div>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
                 <Button
                   size="lg"
-                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto whitespace-nowrap"
                   onClick={() => navigate("/setup-guide")}
                 >
                   <Settings className="mr-2 h-5 w-5 sm:h-6 sm:w-6 animate-spin-slow" />
@@ -48,7 +48,7 @@ const Hero = () => {
 
                 <Button
                   size="lg"
-                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto whitespace-nowrap"
                   onClick={() => navigate("/driver-download")}
                 >
                   <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
@@ -84,7 +84,7 @@ const Hero = () => {
             </div>
 
             <motion.div
-              className="flex items-end h-full mt-6 md:mt-0"
+              className="flex items-end justify-center h-full mt-6 md:mt-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
             >
