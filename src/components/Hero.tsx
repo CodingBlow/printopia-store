@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Settings, CheckCircle } from "lucide-react";
-import PrinterSupportPopup from "./PrinterSupportPopup";
+import HeroImage from "../images/hero.webp";
 
 const Hero = () => {
   const navigate = useNavigate();
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   return (
     <section className="relative overflow-hidden bg-white">
@@ -32,7 +31,7 @@ const Hero = () => {
                 </p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="flex flex-col sm:flex-row gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -57,13 +56,15 @@ const Hero = () => {
                 </Button>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="pt-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
                 <div className="bg-blue-50 p-6 rounded-xl">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Smart Setup Features:</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    Smart Setup Features:
+                  </h3>
                   <ul className="space-y-4 text-lg font-medium">
                     <li className="flex items-center gap-3">
                       <CheckCircle className="h-6 w-6 text-green-600" />
@@ -82,19 +83,21 @@ const Hero = () => {
               </motion.div>
             </div>
 
-            <motion.div 
+            <motion.div
               className="flex items-end h-full"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
             >
               <div className="relative w-full rounded-xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80"
-                  alt="Printer Setup Wizard" 
+                <img
+                  src={HeroImage}
+                  alt="Printer Setup Wizard"
                   className="w-full h-[400px] md:h-[500px] object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                  <div className="text-white text-xl md:text-2xl font-bold">Universal Setup Solution</div>
+                  <div className="text-white text-xl md:text-2xl font-bold">
+                    Universal Setup Solution
+                  </div>
                 </div>
               </div>
             </motion.div>
