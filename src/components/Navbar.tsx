@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, ShoppingCart } from "lucide-react";
+import { Search, ShoppingCart, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -71,122 +71,132 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <a href="/" className="text-2xl font-bold text-primary">
-              Monto-Print
-            </a>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="/products"
-              className="text-gray-700 hover:text-primary transition-colors"
-            >
-              Products
-            </a>
-            <a
-              href="/blog"
-              className="text-gray-700 hover:text-primary transition-colors"
-            >
-              Blog
-            </a>
-            <a
-              href="/contact"
-              className="text-gray-700 hover:text-primary transition-colors"
-            >
-              Contact
-            </a>
-            <a
-              href="/setup-guide"
-              className="text-gray-700 hover:text-primary transition-colors"
-            >
-              Setup Guide
-            </a>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <form onSubmit={handleSearch} className="relative hidden md:block">
-              <Input
-                type="search"
-                placeholder="Search products..."
-                className="w-64"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Button
-                type="submit"
-                variant="ghost"
-                size="icon"
-                className="absolute right-0 top-0"
-              >
-                <Search className="h-5 w-5" />
-              </Button>
-            </form>
-
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
-                  <ShoppingCart className="h-5 w-5" />
-                  {cartItems.length > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                      {cartItems.length}
-                    </span>
-                  )}
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="w-[400px]">
-                <SheetHeader>
-                  <SheetTitle>Shopping Cart</SheetTitle>
-                </SheetHeader>
-                <div className="mt-8">
-                  {cartItems.length === 0 ? (
-                    <p className="text-muted-foreground">Your cart is empty</p>
-                  ) : (
-                    <div className="space-y-4">
-                      {cartItems.map((item) => (
-                        <CartItem
-                          key={item.id}
-                          {...item}
-                          onQuantityChange={handleQuantityChange}
-                        />
-                      ))}
-                      <div className="pt-4 border-t">
-                        <div className="flex justify-between font-medium mb-4">
-                          <span>Total</span>
-                          <span>${cartTotal.toFixed(2)}</span>
-                        </div>
-                        <Dialog
-                          open={showCheckoutForm}
-                          onOpenChange={setShowCheckoutForm}
-                        >
-                          <DialogTrigger asChild>
-                            <Button
-                              className="w-full"
-                              onClick={handleCheckoutClick}
-                            >
-                              Checkout
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
-                            <DialogHeader>
-                              <DialogTitle>Checkout</DialogTitle>
-                            </DialogHeader>
-                            <CheckoutForm onSubmit={handleCheckoutSubmit} />
-                          </DialogContent>
-                        </Dialog>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </SheetContent>
-            </Sheet>
+    <div className="border-b">
+      <div className="bg-primary py-2">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-end items-center text-primary-foreground text-sm">
+            <Phone className="h-4 w-4 mr-2" />
+            <span>Call us: +1 (555) 123-4567</span>
           </div>
         </div>
       </div>
-    </nav>
+      <nav className="bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <a href="/" className="text-2xl font-bold text-primary">
+                Monto-Print
+              </a>
+            </div>
+
+            <div className="hidden md:flex items-center space-x-8">
+              <a
+                href="/products"
+                className="text-gray-700 hover:text-primary transition-colors font-medium"
+              >
+                Products
+              </a>
+              <a
+                href="/blog"
+                className="text-gray-700 hover:text-primary transition-colors font-medium"
+              >
+                Blog
+              </a>
+              <a
+                href="/contact"
+                className="text-gray-700 hover:text-primary transition-colors font-medium"
+              >
+                Contact
+              </a>
+              <a
+                href="/setup-guide"
+                className="text-gray-700 hover:text-primary transition-colors font-medium"
+              >
+                Setup Guide
+              </a>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <form onSubmit={handleSearch} className="relative hidden md:block">
+                <Input
+                  type="search"
+                  placeholder="Search products..."
+                  className="w-64"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <Button
+                  type="submit"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0"
+                >
+                  <Search className="h-5 w-5" />
+                </Button>
+              </form>
+
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="relative">
+                    <ShoppingCart className="h-5 w-5" />
+                    {cartItems.length > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {cartItems.length}
+                      </span>
+                    )}
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className="w-[400px]">
+                  <SheetHeader>
+                    <SheetTitle>Shopping Cart</SheetTitle>
+                  </SheetHeader>
+                  <div className="mt-8">
+                    {cartItems.length === 0 ? (
+                      <p className="text-muted-foreground">Your cart is empty</p>
+                    ) : (
+                      <div className="space-y-4">
+                        {cartItems.map((item) => (
+                          <CartItem
+                            key={item.id}
+                            {...item}
+                            onQuantityChange={handleQuantityChange}
+                          />
+                        ))}
+                        <div className="pt-4 border-t">
+                          <div className="flex justify-between font-medium mb-4">
+                            <span>Total</span>
+                            <span>${cartTotal.toFixed(2)}</span>
+                          </div>
+                          <Dialog
+                            open={showCheckoutForm}
+                            onOpenChange={setShowCheckoutForm}
+                          >
+                            <DialogTrigger asChild>
+                              <Button
+                                className="w-full"
+                                onClick={handleCheckoutClick}
+                              >
+                                Checkout
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
+                              <DialogHeader>
+                                <DialogTitle>Checkout</DialogTitle>
+                              </DialogHeader>
+                              <CheckoutForm onSubmit={handleCheckoutSubmit} />
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 
