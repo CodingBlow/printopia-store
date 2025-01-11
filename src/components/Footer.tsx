@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import logo from '../images/logo1.png';
 
 const Footer = () => {
   return (
@@ -7,10 +8,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">
-              Monto-Print
+              <Link to="/" className="block mb-4">
+                <img
+                  src={logo}
+                  alt="Monto-Print Logo"
+                  className="h-10 w-auto"
+                />
+              </Link>
             </h3>
             <p className="text-sm">
-            Explore Our Wide Range of Printers | Expert Support & Service | Fast Delivery
+              Explore Our Wide Range of Printers | Expert Support & Service |
+              Fast Delivery
             </p>
           </div>
           <div>
@@ -19,12 +27,18 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/products" className="hover:text-white transition-colors">
+                <Link
+                  to="/products"
+                  className="hover:text-white transition-colors"
+                >
                   Products
                 </Link>
               </li>
               <li>
-                <Link to="/support" className="hover:text-white transition-colors">
+                <Link
+                  to="/support"
+                  className="hover:text-white transition-colors"
+                >
                   Support
                 </Link>
               </li>
@@ -34,7 +48,10 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-white transition-colors">
+                <Link
+                  to="/about"
+                  className="hover:text-white transition-colors"
+                >
                   About Us
                 </Link>
               </li>
@@ -44,7 +61,10 @@ const Footer = () => {
             <h4 className="text-white text-lg font-semibold mb-4">Support</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/contact" className="hover:text-white transition-colors">
+                <Link
+                  to="/contact"
+                  className="hover:text-white transition-colors"
+                >
                   Contact Us
                 </Link>
               </li>
@@ -59,12 +79,18 @@ const Footer = () => {
             <h4 className="text-white text-lg font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/terms" className="hover:text-white transition-colors">
+                <Link
+                  to="/terms"
+                  className="hover:text-white transition-colors"
+                >
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link to="/privacy-policy" className="hover:text-white transition-colors">
+                <Link
+                  to="/privacy-policy"
+                  className="hover:text-white transition-colors"
+                >
                   Privacy Policy
                 </Link>
               </li>

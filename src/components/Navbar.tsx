@@ -24,6 +24,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import logo from "../images/logo1.png";
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -85,8 +86,12 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <Link to="/" className="text-2xl font-bold text-primary">
-                Monto-Print
+              <Link to="/" className="flex items-center">
+                <img
+                  src= {logo}
+                  alt="Monto-Print Logo"
+                  className="h-10 w-auto" // Adjust height and width as needed
+                />
               </Link>
             </div>
 
