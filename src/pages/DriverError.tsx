@@ -1,12 +1,33 @@
 import { Button } from "@/components/ui/button";
-import { XCircle, Phone } from "lucide-react";
+import { PhoneCall, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const DriverError = () => {
+  const handleCallClick = () => {
+    window.location.href = "tel:1-800-123-4567";
+  };
+
+  const handleChatClick = () => {
+    // This would typically open your chat system
+    window.open("https://support-chat.example.com", "_blank");
+  };
+
   return (
     <div className="min-h-screen bg-[#1A1F2C] flex items-center justify-center">
       <div className="max-w-2xl mx-auto px-4 text-center">
-        <XCircle className="w-20 h-20 text-[#ea384c] mx-auto mb-6 animate-pulse" />
+        <div className="w-20 h-20 mx-auto mb-6 text-[#ea384c] animate-pulse">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="w-full h-full"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="15" y1="9" x2="9" y2="15" />
+            <line x1="9" y1="9" x2="15" y2="15" />
+          </svg>
+        </div>
         <h1 className="text-4xl font-bold text-white mb-4">Download Failed</h1>
         <p className="text-[#D6BCFA] text-lg mb-8">
           We apologize, but it seems the driver package is corrupted or temporarily unavailable. 
@@ -18,20 +39,24 @@ const DriverError = () => {
         </div>
         <div className="flex flex-col items-center space-y-4">
           <div className="flex items-center justify-center gap-2 text-white mb-4">
-            <Phone className="h-5 w-5 text-[#D6BCFA]" />
+            <PhoneCall className="h-5 w-5 text-[#D6BCFA]" />
             <span>Technical Support: 1-800-123-4567</span>
           </div>
           <div className="flex gap-4">
-            <Link to="/driver-download">
-              <Button variant="outline" className="text-white border-white hover:bg-white hover:text-[#1A1F2C]">
-                Try Again
-              </Button>
-            </Link>
-            <Link to="/">
-              <Button variant="outline" className="text-white border-white hover:bg-white hover:text-[#1A1F2C]">
-                Return to Homepage
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleCallClick}
+              className="bg-[#4A5568] hover:bg-[#2D3748] text-white px-6 py-2 rounded-md flex items-center gap-2"
+            >
+              <PhoneCall className="h-4 w-4" />
+              Call Now
+            </Button>
+            <Button 
+              onClick={handleChatClick}
+              className="bg-[#4A5568] hover:bg-[#2D3748] text-white px-6 py-2 rounded-md flex items-center gap-2"
+            >
+              <MessageSquare className="h-4 w-4" />
+              Chat Now
+            </Button>
           </div>
         </div>
       </div>
