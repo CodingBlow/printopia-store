@@ -20,6 +20,7 @@ import Returns from "./pages/Returns";
 import About from "./pages/About";
 import SetupGuide from "./pages/SetupGuide";
 import DriverDownload from "./pages/DriverDownload";
+import DriverError from "./pages/DriverError";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/setup-guide" element={<SetupGuide />} />
                 <Route path="/driver-download" element={<DriverDownload />} />
+                <Route path="/driver-error" element={<DriverError />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -10,7 +11,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Printer } from "lucide-react";
-import FullScreenError from "@/components/FullScreenError";
 import DriverSearchForm from "@/components/DriverSearchForm";
 import DriverDownloadCard from "@/components/DriverDownloadCard";
 import DownloadProgress from "@/components/DownloadProgress";
@@ -19,11 +19,11 @@ const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
 const DriverDownload = () => {
+  const navigate = useNavigate();
   const [modelNumber, setModelNumber] = useState("");
   const [showDrivers, setShowDrivers] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [downloading, setDownloading] = useState(false);
-  const [showError, setShowError] = useState(false);
   const [progress, setProgress] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -93,12 +93,8 @@ Model: ${modelNumber}
     }
 
     setDownloading(false);
-    setShowError(true);
+    navigate('/driver-error');
   };
-
-  if (showError) {
-    return <FullScreenError />;
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
