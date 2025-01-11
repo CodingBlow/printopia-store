@@ -124,7 +124,7 @@ const Contact = () => {
                   <Mail className="h-6 w-6 text-primary" />
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-600">support@Monto-Print.com</p>
+                    <p className="text-gray-600">support@montoprint.com</p>
                   </div>
                 </div>
               </CardContent>
