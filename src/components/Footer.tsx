@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -8,7 +10,7 @@ const Footer = () => {
               Monto-Print
             </h3>
             <p className="text-sm">
-              Professional printing solutions with expert support and service.
+            Explore Our Wide Range of Printers | Expert Support & Service | Fast Delivery
             </p>
           </div>
           <div>
@@ -17,30 +19,24 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/products"
-                  className="hover:text-white transition-colors"
-                >
+                <Link to="/products" className="hover:text-white transition-colors">
                   Products
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/support"
-                  className="hover:text-white transition-colors"
-                >
+                <Link to="/support" className="hover:text-white transition-colors">
                   Support
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/blog" className="hover:text-white transition-colors">
+                <Link to="/blog" className="hover:text-white transition-colors">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/about" className="hover:text-white transition-colors">
+                <Link to="/about" className="hover:text-white transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -48,17 +44,14 @@ const Footer = () => {
             <h4 className="text-white text-lg font-semibold mb-4">Support</h4>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/contact"
-                  className="hover:text-white transition-colors"
-                >
+                <Link to="/contact" className="hover:text-white transition-colors">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/faq" className="hover:text-white transition-colors">
+                <Link to="/faq" className="hover:text-white transition-colors">
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -66,17 +59,14 @@ const Footer = () => {
             <h4 className="text-white text-lg font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/terms" className="hover:text-white transition-colors">
+                <Link to="/terms" className="hover:text-white transition-colors">
                   Terms & Conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/privacy-policy"
-                  className="hover:text-white transition-colors"
-                >
+                <Link to="/privacy-policy" className="hover:text-white transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

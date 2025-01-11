@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-white">
       <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-top" />
-      <div className="relative pt-8 pb-8 sm:pt-12 md:pt-16 md:pb-12 lg:pt-20 lg:pb-16">
+      <div className="relative pt-4 pb-8 sm:pt-8 md:pt-16 md:pb-8 lg:pt-10 lg:pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
             <div className="flex flex-col justify-start space-y-4 sm:space-y-6">

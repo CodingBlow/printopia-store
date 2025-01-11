@@ -10,6 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
 import { updateQuantity, clearCart } from "@/store/cartSlice";
@@ -84,42 +85,42 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <a href="/" className="text-2xl font-bold text-primary">
+              <Link to="/" className="text-2xl font-bold text-primary">
                 Monto-Print
-              </a>
+              </Link>
             </div>
 
             <div className="hidden md:flex items-center space-x-8">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
               >
                 Home
-              </a>
-              <a
-                href="/products"
+              </Link>
+              <Link
+                to="/products"
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
               >
                 Products
-              </a>
-              <a
-                href="/blog"
+              </Link>
+              <Link
+                to="/blog"
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
               >
                 Blog
-              </a>
-              <a
-                href="/contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
               >
                 Contact
-              </a>
-              <a
-                href="/setup-guide"
+              </Link>
+              <Link
+                to="/setup-guide"
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
               >
                 Setup Guide
-              </a>
+              </Link>
             </div>
 
             <div className="flex items-center space-x-4">
