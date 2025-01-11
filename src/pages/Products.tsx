@@ -16,7 +16,7 @@ import Premiumcartige from "../images/Primium cartig.png";
 import premuim from "../images/premuimjet.png";
 import colorjet from "../images/colorjet.png";
 import workforce from "../images/Workforce.png";
-import Ecojet from "../images/Ecojet.png";
+import Ecojet from "../images/EcoJet.png";
 import xeroxlaser from "../images/xeroxlaser.png";
 import photoPrinter from "../images/PhotoPrinter.png";
 import EconomyPrint from "../images/EconomyPrint.png";
