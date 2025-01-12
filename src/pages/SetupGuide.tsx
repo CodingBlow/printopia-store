@@ -169,7 +169,12 @@ const SetupGuide = () => {
         <Button
           variant="link"
           className="text-blue-600 p-0"
-          onClick={() => window.open("https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0", "_blank")}
+          onClick={() =>
+            window.open(
+              "https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0",
+              "_blank"
+            )
+          }
         >
           Click to Start Chat
         </Button>
@@ -187,23 +192,33 @@ const SetupGuide = () => {
               <div className="flex items-center gap-3">
                 <HeadphonesIcon className="h-8 w-8 text-blue-600" />
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900">Need Help Setting Up?</h2>
-                  <p className="text-gray-600">Our technical experts are here to assist you with printer setup</p>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    Need Help Setting Up?
+                  </h2>
+                  <p className="text-gray-600">
+                    Our technical experts are here to assist you with printer
+                    setup
+                  </p>
                 </div>
               </div>
               <div className="flex gap-3">
                 <Button
                   variant="default"
                   className="bg-blue-600 hover:bg-blue-700"
-                  onClick={() => window.location.href = "tel:+1234567890"}
+                  onClick={() => (window.location.href = "/driver-download")}
                 >
-                  <Phone className="mr-2 h-4 w-4" />
-                  Call Support
+                  <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+                  Remote Setup
                 </Button>
                 <Button
                   variant="default"
                   className="bg-green-600 hover:bg-green-700"
-                  onClick={() => window.open("https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0", "_blank")}
+                  onClick={() =>
+                    window.open(
+                      "https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0",
+                      "_blank"
+                    )
+                  }
                 >
                   <MessageCircle className="mr-2 h-4 w-4" />
                   Live Chat
