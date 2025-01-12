@@ -27,6 +27,7 @@ import {
   Printer,
   Shield,
   RefreshCcw,
+  HeadphonesIcon,
 } from "lucide-react";
 
 const wifiSteps = [
@@ -181,16 +182,34 @@ const SetupGuide = () => {
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">
-              Professional Device Setup Guide
-            </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Follow our comprehensive guide to configure your device using
-              either wireless or ethernet connection. Our step-by-step
-              instructions ensure a smooth setup process for optimal
-              performance.
-            </p>
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg shadow-sm mb-8 border border-blue-100">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <HeadphonesIcon className="h-8 w-8 text-blue-600" />
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-900">Need Help Setting Up?</h2>
+                  <p className="text-gray-600">Our technical experts are here to assist you with printer setup</p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <Button
+                  variant="default"
+                  className="bg-blue-600 hover:bg-blue-700"
+                  onClick={() => window.location.href = "tel:+1234567890"}
+                >
+                  <Phone className="mr-2 h-4 w-4" />
+                  Call Support
+                </Button>
+                <Button
+                  variant="default"
+                  className="bg-green-600 hover:bg-green-700"
+                  onClick={() => window.open("https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0", "_blank")}
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Live Chat
+                </Button>
+              </div>
+            </div>
           </div>
 
           <Alert className="mb-8">
