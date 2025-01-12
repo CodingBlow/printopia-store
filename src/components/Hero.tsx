@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Settings, CheckCircle } from "lucide-react";
-import HeroImage from "../images/hero.webp";
+import HeroImage from "../images/image_hero.png";
 
 const Hero = () => {
   const navigate = useNavigate();
