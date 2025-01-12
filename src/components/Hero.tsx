@@ -38,12 +38,21 @@ const Hero = () => {
               >
                 <Button
                   size="lg"
+                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex-grow sm:flex-grow-0 whitespace-nowrap"
+                  onClick={() => navigate("/products")}
+                >
+                  <Settings className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+                  Products
+                  <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
+                </Button>
+
+                <Button
+                  size="lg"
                   className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex-grow sm:flex-grow-0 whitespace-nowrap"
                   onClick={() => navigate("/setup-guide")}
                 >
-                  <Settings className="mr-2 h-5 w-5 sm:h-6 sm:w-6 animate-spin-slow" />
-                  Setup Wizard
-                  <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
+                  <Settings className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
+                  Setup Your Printer
                 </Button>
 
                 <Button
