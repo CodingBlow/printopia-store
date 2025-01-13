@@ -14,7 +14,7 @@ import { Card } from "@/components/ui/card";
 import { Download } from "lucide-react";
 import canon from "../images/canon.png";
 import epson from "../images/epson.png";
-import hp from "../images/hp.png";
+import hp from "../images/HP-Logo-1999.jpg";
 
 interface FormData {
   name: string;
