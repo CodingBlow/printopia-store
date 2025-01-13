@@ -1,3 +1,4 @@
+// DriverDownload.tsx
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,8 +11,14 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { Download } from "lucide-react";
+import { Download, HelpCircle } from "lucide-react";
 import canon from "../images/canon.png";
 import epson from "../images/epson.png";
 import hp from "../images/HP-Logo-1999.jpg";
@@ -37,6 +44,29 @@ const PRINTER_BRANDS = [
     name: 'Canon',
     imgUrl: canon,
     redirectUrl: 'https://www.usa.canon.com/support/software-and-drivers'
+  }
+];
+
+const FAQ_ITEMS = [
+  {
+    question: "How do I install my printer driver?",
+    answer: "1. Download the driver package for your printer model\n2. Double-click the downloaded file to start installation\n3. Follow the on-screen instructions\n4. Connect your printer when prompted\n5. Complete the setup wizard\n6. Print a test page to verify installation"
+  },
+  {
+    question: "What information do I need before downloading?",
+    answer: "Make sure you have your printer's exact model number, your operating system version (Windows/Mac), and a stable internet connection. This ensures you get the correct driver version for your device."
+  },
+  {
+    question: "Why do I need to update my printer driver?",
+    answer: "Regular driver updates provide important benefits including improved printing quality, new features, better compatibility with your operating system, and fixed security vulnerabilities."
+  },
+  {
+    question: "What if I have installation problems?",
+    answer: "If you encounter issues, try these steps:\n1. Uninstall any existing printer drivers\n2. Restart your computer\n3. Temporarily disable antivirus\n4. Run the installer as administrator\n5. Ensure your printer is properly connected"
+  },
+  {
+    question: "Are these drivers compatible with Windows 11/10?",
+    answer: "Yes, all drivers provided are compatible with the latest Windows 11 and Windows 10 versions. Make sure to select the correct driver version for your specific operating system."
   }
 ];
 
@@ -123,7 +153,7 @@ Phone: ${formData.phone}
             <h1 className="text-4xl font-bold mb-4">Printer Driver Downloads</h1>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {PRINTER_BRANDS.map((brand) => (
               <Card
                 key={brand.name}
@@ -147,6 +177,34 @@ Phone: ${formData.phone}
                 </div>
               </Card>
             ))}
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-16 mb-8">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-semibold flex items-center justify-center gap-2">
+                <HelpCircle className="h-6 w-6 text-blue-600" />
+                Installation Guide & FAQs
+              </h2>
+              <p className="text-gray-600 mt-2">
+                Everything you need to know about downloading and installing printer drivers
+              </p>
+            </div>
+            
+            <Card className="p-6">
+              <Accordion type="single" collapsible className="w-full">
+                {FAQ_ITEMS.map((item, index) => (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger className="text-left">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-gray-600 whitespace-pre-line">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </Card>
           </div>
 
           <Dialog open={showForm} onOpenChange={setShowForm}>
