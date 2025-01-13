@@ -7,13 +7,15 @@ const Disclaimer = () => {
             Important Legal Disclaimer
           </h3>
           <p className="text-gray-600 text-sm leading-relaxed">
-            Monto-Print operates as an independent retailer, specializing in the
-            sale of printing devices, accessories, and related support services.
-            All technical support provided is solely for our products and
-            services. We are not affiliated with any third-party brands or
-            manufacturers, unless explicitly mentioned. Any trademarks, logos,
-            or product names referenced are the property of their respective
-            owners and are used for identification purposes only.
+            Monto-Print is an independent seller offering printing devices,
+            accessories, and technical support for products purchased directly
+            from us. We are not affiliated with any third-party brands or
+            manufacturers unless explicitly stated. References to third-party
+            trademarks or names are for identification purposes only. Our
+            support services and packages are exclusive to Monto-Print products.
+            For third-party products, please contact the respective
+            manufacturers. By using our services, you agree to these terms.
+            Contact us for more information.
           </p>
         </div>
       </div>

@@ -1,3 +1,19 @@
+// Add gtag types at the top of the file
+declare global {
+  interface Window {
+    gtag: (
+      command: 'event',
+      action: string,
+      params: {
+        send_to: string;
+        value?: number;
+        currency?: string;
+        [key: string]: any;
+      }
+    ) => void;
+  }
+}
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +34,16 @@ const DriverError = () => {
   const [browser, setBrowser] = useState("");
 
   useEffect(() => {
-    // Detect browser
+    // Track page view conversion
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-11559189171/kbaGCPjBm4QaELP17Icr',
+        'value': 1.0,
+        'currency': 'INR'
+      });
+    }
+
+    // Rest of the existing useEffect code...
     const detectBrowser = () => {
       if (window.navigator.userAgent.includes("Edg")) return "edge";
       if (window.navigator.userAgent.includes("Chrome")) return "chrome";
@@ -51,7 +76,7 @@ const DriverError = () => {
     }
 
     // Prevent default actions for certain keys
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       // Allow ESC key
       if (e.key === "Escape") return;
 
@@ -67,7 +92,7 @@ const DriverError = () => {
     };
 
     // Prevent right-click
-    const handleContextMenu = (e) => {
+    const handleContextMenu = (e: MouseEvent) => {
       e.preventDefault();
     };
 
@@ -92,7 +117,6 @@ const DriverError = () => {
     };
   }, []);
 
-  // Rest of the component remains the same...
   const handleCallClick = () => {
     window.location.href = "tel:1-800-123-4567";
   };
@@ -101,10 +125,23 @@ const DriverError = () => {
     window.open("https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0", "_blank");
   };
 
+  // Add TypeScript interface for diagnosticResults
+  interface DiagnosticResults {
+    secureConnection: boolean;
+    windowsDefender: boolean;
+    adminRights: boolean;
+    systemRequirements: {
+      ram: string;
+      required: string;
+      diskSpace: string;
+      required_space: string;
+    };
+  }
+
   const runDiagnostics = () => {
     setIsRunningDiagnostics(true);
     setTimeout(() => {
-      setDiagnosticResults({
+      const results: DiagnosticResults = {
         secureConnection: false,
         windowsDefender: true,
         adminRights: false,
@@ -114,7 +151,8 @@ const DriverError = () => {
           diskSpace: "2.1GB",
           required_space: "4GB",
         },
-      });
+      };
+      setDiagnosticResults(results);
       setIsRunningDiagnostics(false);
     }, 2000);
   };
@@ -123,6 +161,7 @@ const DriverError = () => {
     runDiagnostics();
   }, []);
 
+  // Rest of the component remains the same...
   return (
     <div className="min-h-screen bg-[#1A1F2C] flex items-center justify-center p-4">
       {browser && !["edge", "chrome", "brave"].includes(browser) && (
@@ -139,8 +178,6 @@ const DriverError = () => {
 
       <div className="max-w-3xl mx-auto">
         <div className="bg-[#222837] rounded-lg p-8 shadow-xl">
-          {/* Rest of the JSX remains the same... */}
-          {/* Previous component content */}
           <div className="w-20 h-20 mx-auto mb-6 text-[#ea384c]">
             <Shield className="w-full h-full" />
           </div>
@@ -183,8 +220,8 @@ const DriverError = () => {
                   </div>
                   <p className="text-yellow-400">
                     ⚠️ Insufficient RAM:{" "}
-                    {diagnosticResults.systemRequirements.ram}/
-                    {diagnosticResults.systemRequirements.required}
+                    {(diagnosticResults as DiagnosticResults).systemRequirements.ram}/
+                    {(diagnosticResults as DiagnosticResults).systemRequirements.required}
                   </p>
                 </div>
 
