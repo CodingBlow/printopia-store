@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -11,11 +10,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import DriverSearchForm from "@/components/DriverSearchForm";
-import DriverDownloadCard from "@/components/DriverDownloadCard";
-import DownloadProgress from "@/components/DownloadProgress";
-import PrinterBrands from "@/components/PrinterBrands";
-import { Printer } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Download } from "lucide-react";
 
 interface FormData {
   name: string;
@@ -23,26 +19,30 @@ interface FormData {
   phone: string;
 }
 
-const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
-
-const PRINTER_BRANDS = {
-  'HP': /^(HP|hp)-|^(deskjet|officejet|laserjet)/i,
-  'Epson': /^(EPSON|epson)|^(L|WF|ET|XP)-/i,
-  'Canon': /^(CANON|canon)|^(MG|MX|TR|TS|MB)/i,
-  'Brother': /^(BROTHER|brother)|^(HL|MFC|DCP)-/i,
-  'Lexmark': /^(LEXMARK|lexmark)|^(MS|MX|CS|CX)/i
-};
+const PRINTER_BRANDS = [
+  {
+    name: 'HP',
+    image: '/hp-logo.png',
+    description: 'HP Printer Solutions',
+    supportUrl: 'https://www.hp.com/us-en/support.html'
+  },
+  {
+    name: 'Epson',
+    image: '/epson-logo.png',
+    description: 'Epson Printing Technology',
+    supportUrl: 'https://epson.com/support'
+  },
+  {
+    name: 'Canon',
+    image: '/canon-logo.png',
+    description: 'Canon Imaging Solutions',
+    supportUrl: 'https://www.usa.canon.com/support'
+  }
+];
 
 const DriverDownload = () => {
-  const navigate = useNavigate();
-  const [modelNumber, setModelNumber] = useState("");
-  const [detectedBrand, setDetectedBrand] = useState("");
-  const [showDrivers, setShowDrivers] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [showForm, setShowForm] = useState(false);
-  const [showBrands, setShowBrands] = useState(false);
-  const [downloading, setDownloading] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -50,130 +50,71 @@ const DriverDownload = () => {
   });
   const { toast } = useToast();
 
-  useEffect(() => {
-    const detectPrinterBrand = (model: string) => {
-      for (const [brand, regex] of Object.entries(PRINTER_BRANDS)) {
-        if (regex.test(model)) {
-          setDetectedBrand(brand);
-          toast({
-            title: "Brand Detected",
-            description: `Detected ${brand} printer model`,
-          });
-          return;
-        }
-      }
-      setDetectedBrand("");
-    };
+  const handleBrandSelect = (brand: string) => {
+    setSelectedBrand(brand);
+    setShowForm(true);
+  };
 
-    if (modelNumber.trim()) {
-      detectPrinterBrand(modelNumber);
-    }
-  }, [modelNumber, toast]);
-
-  const handleSearch = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (modelNumber.trim()) {
-      setShowDrivers(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    const brand = PRINTER_BRANDS.find(b => b.name === selectedBrand);
+    
+    if (brand) {
+      setShowForm(false);
+      window.open(brand.supportUrl, '_blank', 'noopener,noreferrer');
       toast({
-        title: "Drivers Found",
-        description: `Compatible ${detectedBrand} drivers found`,
+        title: "Success",
+        description: "Redirecting to official support page...",
       });
     }
   };
 
-  const sendToTelegram = async (data: FormData) => {
-    const message = `
-New Driver Download Request:
-Brand: ${detectedBrand}
-Name: ${data.name}
-Email: ${data.email}
-Phone: ${data.phone}
-Model: ${modelNumber}
-    `;
-
-    try {
-      await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-          }),
-        }
-      );
-    } catch (error) {
-      console.error("Failed to send to Telegram:", error);
-    }
-  };
-
-  const handleDownload = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await sendToTelegram(formData);
-    setShowForm(false);
-    setShowBrands(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    toast({
-      title: "Form Submitted",
-      description: "Please select your printer brand to continue",
-    });
-  };
-
-  if (showBrands) {
-    return <PrinterBrands />;
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
+      <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
-              <Printer className="h-20 w-20 text-primary" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              {detectedBrand ? `${detectedBrand} Printer Drivers` : "Software & Driver Downloads"}
-            </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {detectedBrand 
-                ? `Download the latest ${detectedBrand} drivers, software, and firmware for your printer.`
-                : "Download the latest drivers, software, and firmware for your printer."}
-            </p>
+          <h1 className="text-4xl font-bold text-center mb-8">
+            Printer Driver Downloads
+          </h1>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {PRINTER_BRANDS.map((brand) => (
+              <Card 
+                key={brand.name}
+                className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => handleBrandSelect(brand.name)}
+              >
+                <div className="flex flex-col items-center space-y-4">
+                  <div className="w-32 h-32 flex items-center justify-center">
+                    <img
+                      src={brand.image}
+                      alt={`${brand.name} logo`}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold">{brand.name}</h3>
+                  <p className="text-gray-600 text-center">{brand.description}</p>
+                  <Button 
+                    className="w-full"
+                    onClick={() => handleBrandSelect(brand.name)}
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    Download Drivers
+                  </Button>
+                </div>
+              </Card>
+            ))}
           </div>
 
-          {!showDrivers && (
-            <DriverSearchForm
-              modelNumber={modelNumber}
-              setModelNumber={setModelNumber}
-              handleSearch={handleSearch}
-            />
-          )}
-
-          {showDrivers && !downloading && !showBrands && (
-            <div className="space-y-6 animate-fadeIn">
-              <DriverDownloadCard
-                modelNumber={modelNumber}
-                onDownloadClick={() => setShowForm(true)}
-              />
-            </div>
-          )}
-
-          <Dialog open={showForm} onOpenChange={() => {}}>
-            <DialogContent
-              className="sm:max-w-md"
-              onPointerDownOutside={(e) => e.preventDefault()}
-            >
+          <Dialog open={showForm} onOpenChange={setShowForm}>
+            <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle>Download Registration</DialogTitle>
+                <DialogTitle>Download {selectedBrand} Drivers</DialogTitle>
                 <DialogDescription>
-                  Please provide your information to begin the download
+                  Please provide your information to access the driver download
                 </DialogDescription>
               </DialogHeader>
-              <form onSubmit={handleDownload} className="space-y-4">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Full Name</Label>
                   <Input
@@ -212,16 +153,11 @@ Model: ${modelNumber}
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  Begin Download
+                  Download Drivers
                 </Button>
-                <p className="text-sm text-gray-500 text-center">
-                  By downloading, you agree to our Terms of Service and Privacy Policy
-                </p>
               </form>
             </DialogContent>
           </Dialog>
-
-          {showBrands && <PrinterBrands />}
         </div>
       </div>
     </div>
