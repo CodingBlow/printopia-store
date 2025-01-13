@@ -7,25 +7,25 @@ const PRINTER_BRANDS = [
     name: 'HP',
     image: '/hp-logo.png',
     description: 'HP Printer Solutions',
-    supportUrl: 'https://support.hp.com/us-en'
+    supportUrl: 'https://www.hp.com/us-en/support.html'
   },
   {
     name: 'Epson',
     image: '/epson-logo.png',
     description: 'Epson Printing Technology',
-    supportUrl: 'https://epson.com/Support/sl/s'
+    supportUrl: 'https://epson.com/support'
   },
   {
     name: 'Canon',
     image: '/canon-logo.png',
     description: 'Canon Imaging Solutions',
-    supportUrl: 'https://www.usa.canon.com/support/software-and-drivers'
+    supportUrl: 'https://www.usa.canon.com/support'
   }
 ];
 
 const PrinterBrands = () => {
   const handleBrandSelect = (url: string) => {
-    window.location.href = url;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
