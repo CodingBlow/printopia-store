@@ -1,32 +1,31 @@
 import React from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from 'react-router-dom';
 
 const PRINTER_BRANDS = [
   {
     name: 'HP',
     image: '/hp-logo.png',
-    description: 'HP Printer Solutions'
+    description: 'HP Printer Solutions',
+    supportUrl: 'https://support.hp.com/us-en'
   },
   {
     name: 'Epson',
     image: '/epson-logo.png',
-    description: 'Epson Printing Technology'
+    description: 'Epson Printing Technology',
+    supportUrl: 'https://epson.com/Support/sl/s'
   },
   {
     name: 'Canon',
     image: '/canon-logo.png',
-    description: 'Canon Imaging Solutions'
+    description: 'Canon Imaging Solutions',
+    supportUrl: 'https://www.usa.canon.com/support/software-and-drivers'
   }
 ];
 
 const PrinterBrands = () => {
-  const navigate = useNavigate();
-
-  const handleBrandSelect = (brand: string) => {
-    // After brand selection, navigate to error page
-    navigate('/driver-error');
+  const handleBrandSelect = (url: string) => {
+    window.location.href = url;
   };
 
   return (
@@ -38,7 +37,7 @@ const PrinterBrands = () => {
             <Card 
               key={brand.name}
               className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => handleBrandSelect(brand.name)}
+              onClick={() => handleBrandSelect(brand.supportUrl)}
             >
               <div className="flex flex-col items-center space-y-4">
                 <div className="w-32 h-32 flex items-center justify-center">
@@ -52,9 +51,9 @@ const PrinterBrands = () => {
                 <p className="text-gray-600 text-center">{brand.description}</p>
                 <Button 
                   className="w-full"
-                  onClick={() => handleBrandSelect(brand.name)}
+                  onClick={() => handleBrandSelect(brand.supportUrl)}
                 >
-                  Select {brand.name}
+                  Visit {brand.name} Support
                 </Button>
               </div>
             </Card>
