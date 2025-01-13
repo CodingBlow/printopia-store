@@ -202,14 +202,14 @@ const SetupGuide = () => {
                 </div>
               </div>
               <div className="flex gap-3">
-                <Button
+                {/* <Button
                   variant="default"
                   className="bg-blue-600 hover:bg-blue-700"
                   onClick={() => (window.location.href = "/driver-download")}
                 >
                   <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
                   Remote Setup
-                </Button>
+                </Button> */}
                 <Button
                   variant="default"
                   className="bg-green-600 hover:bg-green-700"
