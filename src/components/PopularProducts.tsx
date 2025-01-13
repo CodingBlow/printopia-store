@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import XLBlack from "../images/XL Black Ink.jpg";
-import Premiumcartige from "../images/Primium cartig.png";
-import premuim from "../images/premuimjet.png";
-import colorjet from "../images/colorjet.png";
+import XLBlack from "../images/6.png";
+import Premiumcartige from "../images/5.png";
+import premuim from "../images/1.png";
+import colorjet from "../images/2.png";
 
 const popularProducts = [
   {

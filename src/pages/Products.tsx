@@ -11,15 +11,15 @@ import { Badge } from "@/components/ui/badge";
 import CartItem from "@/components/CartItem";
 import CheckoutForm, { CheckoutFormData } from "@/components/CheckoutForm";
 import OrderSuccess from "@/components/OrderSuccess";
-import XLBlack from "../images/XL Black Ink.jpg";
-import Premiumcartige from "../images/Primium cartig.png";
-import premuim from "../images/premuimjet.png";
-import colorjet from "../images/colorjet.png";
-import workforce from "../images/Workforce.png";
-import Ecojet from "../images/EcoJet.png";
-import xeroxlaser from "../images/xeroxlaser.png";
+import XLBlack from "../images/6.png";
+import Premiumcartige from "../images/5.png";
+import premuim from "../images/1.png";
+import colorjet from "../images/2.png";
+import workforce from "../images/4.png";
+import Ecojet from "../images/3.png";
+import xeroxlaser from "../images/7.png";
 import photoPrinter from "../images/PhotoPrinter.png";
-import EconomyPrint from "../images/EconomyPrint.png";
+import EconomyPrint from "../images/8.png";
 
 export const categories = [
   {
