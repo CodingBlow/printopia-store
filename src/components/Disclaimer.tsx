@@ -13,9 +13,11 @@ const Disclaimer = () => {
             manufacturers unless explicitly stated. References to third-party
             trademarks or names are for identification purposes only. Our
             support services and packages are exclusive to Monto-Print products.
-            For third-party products, please contact the respective
-            manufacturers. By using our services, you agree to these terms.
-            Contact us for more information.
+            For third-party products, including driver downloads, we provide
+            links to the official websites of the respective manufacturers. For
+            further support related to third-party products, please contact the
+            respective manufacturers directly. By using our services, you agree
+            to these terms. Contact us for more information.
           </p>
         </div>
       </div>
