@@ -16,10 +16,15 @@ const PrivacyPolicy = () => {
           <p>We collect information that you provide directly to us, including:</p>
           <ul className="list-disc list-inside">
             <li>Name and contact information</li>
+            <li>Email address</li>
+            <li>Phone number</li>
             <li>Payment information</li>
             <li>Order history and preferences</li>
             <li>Device and usage information</li>
           </ul>
+          <p>
+            Additionally, we collect your name, email address, and phone number when you download printer drivers through our platform. This information is used solely for processing your request and providing support as needed.
+          </p>
         </section>
 
         <section className="mb-10">
@@ -28,6 +33,7 @@ const PrivacyPolicy = () => {
           <ul className="list-disc list-inside">
             <li>Process your orders and payments</li>
             <li>Communicate with you about products and services</li>
+            <li>Provide driver download support and assistance</li>
             <li>Improve our website and customer experience</li>
             <li>Comply with legal obligations</li>
           </ul>
