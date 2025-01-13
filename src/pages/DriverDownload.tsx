@@ -60,12 +60,51 @@ const DriverDownload = () => {
     const brand = PRINTER_BRANDS.find(b => b.name === selectedBrand);
     
     if (brand) {
-      setShowForm(false);
-      window.open(brand.supportUrl, '_blank', 'noopener,noreferrer');
-      toast({
-        title: "Success",
-        description: "Redirecting to official support page...",
-      });
+      try {
+        const BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+        const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+        
+        if (!BOT_TOKEN || !CHAT_ID) {
+          throw new Error("Telegram credentials not configured");
+        }
+
+        const message = `
+New Driver Download Request:
+Brand: ${selectedBrand}
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+        `;
+
+        const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to send message to Telegram");
+        }
+
+        toast({
+          title: "Request Submitted",
+          description: "Redirecting to download page...",
+        });
+
+        setShowForm(false);
+        window.open(brand.supportUrl, '_blank', 'noopener,noreferrer');
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to submit request. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -99,7 +138,7 @@ const DriverDownload = () => {
                     onClick={() => handleBrandSelect(brand.name)}
                   >
                     <Download className="mr-2 h-4 w-4" />
-                    Download Drivers
+                    Download Latest Driver
                   </Button>
                 </div>
               </Card>
