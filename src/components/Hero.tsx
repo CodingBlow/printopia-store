@@ -55,14 +55,14 @@ const Hero = () => {
                   Setup Your Printer
                 </Button>
 
-                {/* <Button
+                <Button
                   size="lg"
                   className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex-grow sm:flex-grow-0 whitespace-nowrap"
                   onClick={() => navigate("/driver-download")}
                 >
                   <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
                   Download Drivers
-                </Button> */}
+                </Button>
               </motion.div>
 
               <motion.div
