@@ -177,58 +177,70 @@ Phone: ${formData.phone}
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50 to-white py-16">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">Printer Driver Downloads</h1>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-800">
+            Printer Driver Downloads
+            </h1>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Download the latest drivers and software for your printer.
+              Compatible with Windows 11, 10, and Mac.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {/* Brand Cards */}
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
             {PRINTER_BRANDS.map((brand) => (
               <Card
                 key={brand.name}
-                className="p-8 hover:shadow-lg transition-shadow border-0 bg-white rounded-xl"
+                className="group p-8 hover:shadow-2xl transition-all duration-300 border-2 border-slate-100 bg-white rounded-2xl"
               >
-                <div className="flex flex-col items-center space-y-6">
-                  <div className="w-full flex items-center justify-center p-4">
+                <div className="flex flex-col items-center space-y-8">
+                  <div className="w-full h-32 flex items-center justify-center p-6 bg-slate-50 rounded-xl">
                     <img
                       src={brand.imgUrl}
                       alt={`${brand.name} Logo`}
-                      className="w-full h-auto object-contain"
+                      className="w-full h-full object-contain filter group-hover:brightness-110 transition-all"
                     />
                   </div>
                   <Button
-                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    className="w-full text-lg py-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
                     onClick={() => handleBrandSelect(brand.name)}
                   >
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Driver
+                    <Download className="mr-3 h-5 w-5" />
+                    Download {brand.name} Driver
                   </Button>
                 </div>
               </Card>
             ))}
           </div>
 
-          <div className="mt-16 mb-8">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-semibold flex items-center justify-center gap-2">
-                <HelpCircle className="h-6 w-6 text-blue-600" />
+          {/* FAQ Section */}
+          <div className="mt-20 mb-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold flex items-center justify-center gap-3 text-slate-800">
+                <HelpCircle className="h-8 w-8 text-blue-600" />
                 Installation Guide & FAQs
               </h2>
-              <p className="text-gray-600 mt-2">
-                Everything you need to know about downloading and installing printer drivers
+              <p className="text-lg text-slate-600 mt-3">
+                Step-by-step guidance for a smooth installation process
               </p>
             </div>
 
-            <Card className="p-6">
+            <Card className="p-8 border-2 border-slate-100 shadow-lg">
               <Accordion type="single" collapsible className="w-full">
                 {FAQ_ITEMS.map((item, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left">
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="border-b border-slate-200 last:border-0"
+                  >
+                    <AccordionTrigger className="text-left text-lg font-medium hover:text-blue-600">
                       {item.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-gray-600 whitespace-pre-line">
+                    <AccordionContent className="text-slate-600 text-base leading-relaxed">
                       {item.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -236,22 +248,61 @@ Phone: ${formData.phone}
               </Accordion>
             </Card>
           </div>
-
+          <div className="mt-8 p-6 bg-slate-50 rounded-xl border-2 border-slate-200">
+            <h3 className="text-xl font-semibold text-slate-800 mb-4">
+              Important Notice
+            </h3>
+            <div className="prose text-slate-700">
+              <p>
+                This website serves as a third-party assistance platform to help
+                users locate printer drivers. When you submit the form:
+              </p>
+              <ul className="list-disc ml-6 mt-2 space-y-2">
+                <li>
+                  You will be redirected to the manufacturer's official website
+                </li>
+                <li>
+                  All downloads are handled directly through the printer
+                  manufacturer's website
+                </li>
+                <li>
+                  Your information helps us improve our service and provide
+                  setup assistance if needed
+                </li>
+                <li>
+                  We do not host, distribute, or modify any driver software
+                </li>
+              </ul>
+              <p className="mt-4">
+                All trademarks and brand names are the property of their
+                respective owners. Our service helps connect users with the
+                appropriate manufacturer's download page.
+              </p>
+            </div>
+          </div>
+          {/* Download Form Dialog */}
           <Dialog open={showForm} onOpenChange={setShowForm}>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle>Download {selectedBrand} Drivers</DialogTitle>
-                <DialogDescription>
-                  Please provide your information to access the driver download.
+                <DialogTitle className="text-2xl font-bold text-slate-800">
+                  Download {selectedBrand} Drivers
+                </DialogTitle>
+                <DialogDescription className="text-slate-600">
+                  Enter your details below to access the official{" "}
+                  {selectedBrand} driver download.
                 </DialogDescription>
               </DialogHeader>
-              <form onSubmit={handleFormSubmit} className="space-y-4">
+              <form onSubmit={handleFormSubmit} className="space-y-6">
+                {/* Form fields with enhanced styling */}
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name" className="text-base font-medium">
+                    Full Name
+                  </Label>
                   <Input
                     id="name"
                     required
-                    placeholder="Enter your full name"
+                    className="h-12 text-lg border-2 focus:border-blue-500"
+                    placeholder="John Doe"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -259,12 +310,15 @@ Phone: ${formData.phone}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
+                  <Label htmlFor="email" className="text-base font-medium">
+                    Email Address
+                  </Label>
                   <Input
                     id="email"
                     type="email"
                     required
-                    placeholder="Enter your email address"
+                    className="h-12 text-lg border-2 focus:border-blue-500"
+                    placeholder="john@example.com"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -272,19 +326,25 @@ Phone: ${formData.phone}
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone" className="text-base font-medium">
+                    Phone Number
+                  </Label>
                   <Input
                     id="phone"
                     required
-                    placeholder="Enter your phone number"
+                    className="h-12 text-lg border-2 focus:border-blue-500"
+                    placeholder="(123) 456-7890"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
                     }
                   />
                 </div>
-                <Button type="submit" className="w-full">
-                  Download
+                <Button
+                  type="submit"
+                  className="w-full h-14 text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                >
+                  Download Now
                 </Button>
               </form>
             </DialogContent>

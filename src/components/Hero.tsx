@@ -1,115 +1,104 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Settings, CheckCircle } from "lucide-react";
-import HeroImage from "../images/image_hero1.png";
+import React from "react";
+import { Settings } from "lucide-react";
+import { Link } from "react-router-dom";
+import image from "../images/printer-1293116_1920.png";
+import { CheckCircle } from "lucide-react";
 
 const Hero = () => {
-  const navigate = useNavigate();
-
   return (
-    <section className="relative overflow-hidden bg-white">
-      <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-top" />
-      <div className="relative pt-4 pb-8 sm:pt-8 md:pt-16 md:pb-8 lg:pt-10 lg:pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
-            <div className="flex flex-col justify-start space-y-4 sm:space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-3 sm:space-y-4"
-              >
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight">
-                  Printer Setup
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 block">
-                    Made Easy
-                  </span>
-                </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium">
-                  Get your printer up and running in minutes
-                </p>
-              </motion.div>
+    <section className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative">
+      {/* Enhanced overlay pattern */}
+      <div className="absolute inset-0 bg-grid-white/[0.05]"></div>
 
-              <motion.div
-                className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <Button
-                  size="lg"
-                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex-grow sm:flex-grow-0 whitespace-nowrap"
-                  onClick={() => navigate("/products")}
-                >
-                  <Settings className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
-                  Products
-                  <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-1 transition-transform" />
-                </Button>
+      <style>
+        {`
+          @keyframes button-hover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+          }
+          .animated-button {
+            animation: button-hover 2s infinite ease-in-out;
+          }
+          .bg-grid-white {
+            background-image: linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+            linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+          }
+        `}
+      </style>
 
-                <Button
-                  size="lg"
-                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex-grow sm:flex-grow-0 whitespace-nowrap"
-                  onClick={() => navigate("/setup-guide")}
-                >
-                  <Settings className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
-                  Setup Your Printer
-                </Button>
-
-                <Button
-                  size="lg"
-                  className="h-12 sm:h-14 lg:h-16 text-base sm:text-lg lg:text-xl font-bold group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 flex-grow sm:flex-grow-0 whitespace-nowrap"
-                  onClick={() => navigate("/driver-download")}
-                >
-                  <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
-                  Download Drivers
-                </Button>
-              </motion.div>
-
-              <motion.div
-                className="pt-4 sm:pt-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
-                <div className="bg-blue-50 p-4 sm:p-6 rounded-xl">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">
-                    Smart Setup Features:
-                  </h3>
-                  <ul className="space-y-3 sm:space-y-4 text-base sm:text-lg font-medium">
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0" />
-                      Automatic Printer Detection
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0" />
-                      Compatible with All Major Brands
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0" />
-                      Step-by-Step Configuration Guide
-                    </li>
-                  </ul>
-                </div>
-              </motion.div>
+      <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left side - Content */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h1 className="text-5xl lg:text-6xl font-bold">
+                <span className="text-white drop-shadow-lg">Printer Setup</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 drop-shadow-lg">
+                  Made Simple
+                </span>
+              </h1>
+              <p className="text-xl text-gray-300 font-medium">
+                Quick and easy setup for your printer in minutes
+              </p>
             </div>
 
-            <motion.div
-              className="flex items-end justify-center h-full mt-6 md:mt-0"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-            >
-              <div className="relative w-full rounded-xl overflow-hidden shadow-2xl">
-                <img
-                  src={HeroImage}
-                  alt="Printer Setup Wizard"
-                  className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 sm:p-6">
-                  <div className="text-white text-lg sm:text-xl md:text-2xl font-bold">
-                    Universal Setup Solution
-                  </div>
+            {/* Feature Keywords */}
+            <div className="flex flex-wrap gap-4">
+              {[
+                "Wireless Setup",
+                "Network Ready",
+                "Auto Configuration",
+                "All-in-One Printer",
+              ].map((feature) => (
+                <div
+                  key={feature}
+                  className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20"
+                >
+                  <CheckCircle className="h-5 w-5 text-cyan-400" />
+                  <span className="text-white font-medium">{feature}</span>
                 </div>
-              </div>
-            </motion.div>
+              ))}
+            </div>
+
+            {/* Button with Movement Animation */}
+            <div className="mt-8">
+            <Link to="/driver-download" className="block w-full sm:w-auto">
+  <button
+    className="animated-button 
+    bg-blue-600
+    text-white text-2xl lg:text-3xl font-bold 
+    px-10 py-7 rounded-xl
+    border-b-8 border-blue-800
+    shadow-lg
+    transform transition-all duration-300 
+    hover:bg-blue-500
+    hover:border-blue-700
+    hover:-translate-y-1
+    hover:shadow-2xl
+    focus:outline-4
+    focus:outline-blue-300"
+  >
+    <div className="flex items-center justify-center gap-4">
+      <Settings className="h-10 w-10" />
+      <span>Click Here to Setup Your Printer</span>
+    </div>
+  </button>
+</Link>
+
+            </div>
+          </div>
+
+          {/* Right side - Single printer image */}
+          <div className="relative rounded-2xl p-8">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-500/20 rounded-2xl backdrop-blur-sm"></div>
+            <div className="relative h-[400px] w-full">
+              <img
+                src={image}
+                alt="Modern All-in-One Printers"
+                className="w-full h-full object-contain rounded-lg mix-blend-luminosity hover:mix-blend-normal transition-all duration-300"
+              />
+            </div>
           </div>
         </div>
       </div>
