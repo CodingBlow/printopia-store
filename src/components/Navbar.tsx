@@ -78,7 +78,7 @@ const Navbar = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-end items-center text-primary-foreground text-sm">
             <Phone className="h-4 w-4 mr-2" />
-            <span>Call us: +1 (555) 123-4567</span>
+            {/* <span>Call us: +1 (555) 123-4567</span> */}
           </div>
         </div>
       </div>
