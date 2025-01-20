@@ -22,6 +22,8 @@ import SetupGuide from "./pages/SetupGuide";
 import DriverDownload from "./pages/DriverDownload";
 import DriverError from "./pages/DriverError";
 import ScrollToTop from "./components/ScrollToTop";
+import DownloadingPage from "./pages/DownloadingPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +53,8 @@ function App() {
                 <Route path="/setup-guide" element={<SetupGuide />} />
                 <Route path="/driver-download" element={<DriverDownload />} />
                 <Route path="/driver-error" element={<DriverError />} />
+                <Route path="/download-page" element={<DownloadingPage />} />
+                <Route path="/downloads" element={<ErrorPage />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>

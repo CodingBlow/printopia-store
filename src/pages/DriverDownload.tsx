@@ -47,17 +47,17 @@ const PRINTER_BRANDS = [
   {
     name: "HP",
     imgUrl: hp,
-    redirectUrl: "https://support.hp.com/us-en",
+    redirectUrl: "/download-page",
   },
   {
     name: "Epson",
     imgUrl: epson,
-    redirectUrl: "https://epson.com/Support/sl/s",
+    redirectUrl: "/download-page",
   },
   {
     name: "Canon",
     imgUrl: canon,
-    redirectUrl: "https://www.usa.canon.com/support/software-and-drivers",
+    redirectUrl: "/download-page",
   },
 ];
 
