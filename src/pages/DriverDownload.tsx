@@ -39,7 +39,7 @@ import hp from "../images/HP-Logo-1999.jpg";
 
 interface FormData {
   name: string;
-  email: string;
+  model: string;
   phone: string;
 }
 
@@ -94,7 +94,7 @@ const DriverDownload = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    email: "",
+    model: "",
     phone: "",
   });
   const { toast } = useToast();
@@ -114,7 +114,7 @@ const DriverDownload = () => {
 New Driver Download Request:
 Brand: ${selectedBrand}
 Name: ${formData.name}
-Email: ${formData.email}
+model: ${formData.model}
 Phone: ${formData.phone}
         `;
 
@@ -159,7 +159,7 @@ Phone: ${formData.phone}
         setShowForm(false);
         setFormData({
           name: "",
-          email: "",
+          model: "",
           phone: "",
         });
 
@@ -292,61 +292,67 @@ Phone: ${formData.phone}
                   {selectedBrand} driver download.
                 </DialogDescription>
               </DialogHeader>
-              <form onSubmit={handleFormSubmit} className="space-y-6">
-                {/* Form fields with enhanced styling */}
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-base font-medium">
-                    Full Name
-                  </Label>
-                  <Input
-                    id="name"
-                    required
-                    className="h-12 text-lg border-2 focus:border-blue-500"
-                    placeholder="John Doe"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-base font-medium">
-                    Email Address
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    required
-                    className="h-12 text-lg border-2 focus:border-blue-500"
-                    placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-base font-medium">
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    required
-                    className="h-12 text-lg border-2 focus:border-blue-500"
-                    placeholder="(123) 456-7890"
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  className="w-full h-14 text-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-                >
-                  Download Now
-                </Button>
-              </form>
+             <form onSubmit={handleFormSubmit} className="space-y-8">
+  <div className="space-y-3">
+    <Label htmlFor="name" className="text-lg font-medium">
+      Your Full Name
+    </Label>
+    <Input
+      id="name"
+      required
+      className="h-14 text-lg border-2 focus:border-blue-500 rounded-lg"
+      placeholder="Please enter your first and last name"
+      value={formData.name}
+      onChange={(e) =>
+        setFormData({ ...formData, name: e.target.value })
+      }
+      aria-label="Full Name Input Field"
+    />
+  </div>
+
+  <div className="space-y-3">
+    <Label htmlFor="model" className="text-lg font-medium">
+      Printer Model Number
+    </Label>
+    <Input
+      id="model"
+      required
+      className="h-14 text-lg border-2 focus:border-blue-500 rounded-lg"
+      placeholder="Example: LaserJet Pro MFP M281fdw"
+      value={formData.model}
+      onChange={(e) =>
+        setFormData({ ...formData, model: e.target.value })
+      }
+      aria-label="Printer Model Input Field"
+    />
+  </div>
+
+  <div className="space-y-3">
+    <Label htmlFor="phone" className="text-lg font-medium">
+      Contact Phone Number
+    </Label>
+    <Input
+      id="phone"
+      type="tel"
+      required
+      className="h-14 text-lg border-2 focus:border-blue-500 rounded-lg"
+      placeholder="Enter your phone number: (555) 123-4567"
+      value={formData.phone}
+      onChange={(e) =>
+        setFormData({ ...formData, phone: e.target.value })
+      }
+      aria-label="Phone Number Input Field"
+    />
+  </div>
+
+  <Button
+    type="submit"
+    className="w-full h-16 text-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 rounded-lg shadow-lg"
+  >
+    Download Your Printer Driver
+  </Button>
+</form>
+
             </DialogContent>
           </Dialog>
         </div>
