@@ -24,6 +24,7 @@ import DriverError from "./pages/DriverError";
 import ScrollToTop from "./components/ScrollToTop";
 import DownloadingPage from "./pages/DownloadingPage";
 import ErrorPage from "./pages/ErrorPage";
+import AllPrinter from "./pages/AllPrinter";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path="/driver-error" element={<DriverError />} />
                 <Route path="/download-page" element={<DownloadingPage />} />
                 <Route path="/downloads" element={<ErrorPage />} />
+                <Route path="/setup-printer" element={<AllPrinter />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>

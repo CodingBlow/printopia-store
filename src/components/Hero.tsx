@@ -81,7 +81,7 @@ const Hero = () => {
   >
     <div className="flex items-center justify-center gap-4">
       <Settings className="h-10 w-10" />
-      <span>Click Here to Setup Your Printer</span>
+      <span>Setup Printer & Download Driver</span>
     </div>
   </button>
 </Link>

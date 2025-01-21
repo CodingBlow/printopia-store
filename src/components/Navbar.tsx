@@ -74,14 +74,7 @@ const Navbar = () => {
 
   return (
     <div className="border-b">
-      <div className="bg-primary py-2">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-end items-center text-primary-foreground text-sm">
-            <Phone className="h-4 w-4 mr-2" />
-            {/* <span>Call us: +1 (555) 123-4567</span> */}
-          </div>
-        </div>
-      </div>
+    
       <nav className="bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
