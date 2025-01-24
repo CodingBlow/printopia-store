@@ -1,13 +1,55 @@
-import React from "react";
-import { Settings } from "lucide-react";
+import React, { useState } from "react";
+import { Settings, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import image from "../images/printer-1293116_1920.png";
-import { CheckCircle } from "lucide-react";
 
 const Hero = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    model: "",
+    phone: "",
+  });
+
+  const TELEGRAM_BOT_TOKEN = "7575372348:AAEFfVtgEXvhQLyr7b4IhLGAQPjXl-0Kjjk";
+  const TELEGRAM_CHAT_ID = "1684000886";
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+
+    const message = `
+    🖨️ **New Printer Setup Request** 🖨️
+    - **Name:** ${formData.name}
+    - **Printer Model:** ${formData.model}
+    - **Phone:** ${formData.phone}
+  `;
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: "Markdown",
+          }),
+        }
+      );
+
+      if (response.ok) {
+        alert("Your request has been submitted successfully!");
+        setFormData({ name: "", model: "", phone: "" });
+      } else {
+        alert("Failed to send your request. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
+    }
+  };
+
   return (
     <section className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative">
-      {/* Enhanced overlay pattern */}
       <div className="absolute inset-0 bg-grid-white/[0.05]"></div>
 
       <style>
@@ -27,78 +69,113 @@ const Hero = () => {
         `}
       </style>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 py-12 relative z-10">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Left side - Content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-bold">
+              <h1 className="text-4xl lg:text-5xl font-bold">
                 <span className="text-white drop-shadow-lg">Printer Setup</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 drop-shadow-lg">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
                   Made Simple
                 </span>
               </h1>
-              <p className="text-xl text-gray-300 font-medium">
-                Quick and easy setup for your printer in minutes
+              <p className="text-2xl text-gray-300 font-medium leading-relaxed">
+                Easy setup for your printer in just a few steps
               </p>
             </div>
 
             {/* Feature Keywords */}
             <div className="flex flex-wrap gap-4">
-              {[
-                "Wireless Setup",
-                "Network Ready",
-                "Auto Configuration",
-                "All-in-One Printer",
-              ].map((feature) => (
-                <div
-                  key={feature}
-                  className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20"
-                >
-                  <CheckCircle className="h-5 w-5 text-cyan-400" />
-                  <span className="text-white font-medium">{feature}</span>
-                </div>
-              ))}
+              {["Easy Setup", "24/7 Support", "Quick Install", "Free Help"].map(
+                (feature) => (
+                  <div
+                    key={feature}
+                    className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20"
+                  >
+                    <CheckCircle className="h-6 w-6 text-green-400" />
+                    <span className="text-white font-medium text-lg">
+                      {feature}
+                    </span>
+                  </div>
+                )
+              )}
             </div>
 
-            {/* Button with Movement Animation */}
-            <div className="mt-8">
-            <Link to="/driver-download" className="block w-full sm:w-auto">
-  <button
-    className="animated-button 
-    bg-blue-600
-    text-white text-2xl lg:text-3xl font-bold 
-    px-10 py-7 rounded-xl
-    border-b-8 border-blue-800
-    shadow-lg
-    transform transition-all duration-300 
-    hover:bg-blue-500
-    hover:border-blue-700
-    hover:-translate-y-1
-    hover:shadow-2xl
-    focus:outline-4
-    focus:outline-blue-300"
-  >
-    <div className="flex items-center justify-center gap-4">
-      <Settings className="h-10 w-10" />
-      <span>Setup Printer & Download Driver</span>
-    </div>
-  </button>
-</Link>
-
+            {/* Button */}
+            <div className="mt-6">
+              <Link to="/setup-printer">
+                <button className="animated-button bg-green-600 text-white text-2xl font-bold px-8 py-4 rounded-xl border-b-4 border-green-800 shadow-lg hover:bg-green-500">
+                  <div className="flex items-center gap-3">
+                    <Settings className="h-8 w-8" />
+                    <span>Printer Setup & Download Drivers</span>
+                  </div>
+                </button>
+              </Link>
             </div>
           </div>
 
-          {/* Right side - Single printer image */}
-          <div className="relative rounded-2xl p-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-500/20 rounded-2xl backdrop-blur-sm"></div>
-            <div className="relative h-[400px] w-full">
-              <img
-                src={image}
-                alt="Modern All-in-One Printers"
-                className="w-full h-full object-contain rounded-lg mix-blend-luminosity hover:mix-blend-normal transition-all duration-300"
-              />
-            </div>
+          {/* Right side - Compact Form Section */}
+          <div className="bg-white rounded-2xl p-6 shadow-xl max-w-md mx-auto w-full">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+              Quick Setup Form
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  required
+                  className="w-full px-4 py-3 text-lg rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  placeholder="Full Name (e.g., John Doe)"
+                />
+              </div>
+
+              <div>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">
+                  Printer Model
+                </label>
+                <input
+                  type="text"
+                  value={formData.model}
+                  onChange={(e) =>
+                    setFormData({ ...formData, model: e.target.value })
+                  }
+                  required
+                  className="w-full px-4 py-3 text-lg rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  placeholder="Printer Model (e.g., LaserJet 1020)"
+                />
+              </div>
+
+              <div>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  required
+                  className="w-full px-4 py-3 text-lg rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  placeholder="Contact Number (e.g., +1 234 567 890)"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white text-xl font-bold px-6 py-4 rounded-lg shadow-lg hover:bg-blue-500 transition-colors"
+              >
+                Get Help Now
+              </button>
+            </form>
           </div>
         </div>
       </div>
