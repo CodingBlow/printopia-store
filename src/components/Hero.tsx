@@ -104,7 +104,7 @@ const Hero = () => {
 
             {/* Button */}
             <div className="mt-6">
-              <Link to="/setup-printer">
+              <Link to="/driver-download">
                 <button className="animated-button bg-green-600 text-white text-2xl font-bold px-8 py-4 rounded-xl border-b-4 border-green-800 shadow-lg hover:bg-green-500">
                   <div className="flex items-center gap-3">
                     <Settings className="h-8 w-8" />
