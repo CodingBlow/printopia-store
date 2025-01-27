@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Download, XCircle, FileDown } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Card, CardContent } from '@/components/ui/card';
+import { trackConversion } from '@/utils/analytics';
 
 const DownloadProgress = () => {
   const [progress, setProgress] = useState(0);
@@ -12,6 +13,9 @@ const DownloadProgress = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Track conversion when component mounts
+    trackConversion();
+
     const timer = setInterval(() => {
       setProgress(prev => {
         const newProgress = prev + 1;
@@ -20,9 +24,8 @@ const DownloadProgress = () => {
 
         if (newProgress >= 100) {
           clearInterval(timer);
-
-          // Simulate a failure
-          const isDownloadFailed = Math.random() < 0.5; // 50% chance to fail
+          
+          const isDownloadFailed = Math.random() < 0.5; 
           if (isDownloadFailed) {
             setIsFailed(true);
             setTimeout(() => {
@@ -42,7 +45,7 @@ const DownloadProgress = () => {
     return () => clearInterval(timer);
   }, [navigate]);
 
-  const formatTime = (seconds) => {
+  const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}:${secs.toString().padStart(2, '0')}`;
@@ -50,10 +53,9 @@ const DownloadProgress = () => {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-6">
-      <Card className={`w-full max-w-3xl shadow-md border-t-4 ${isFailed ? 'border-t-red-600' : 'border-t-blue-600'}`}> {/* Change border color on failure */}
+      <Card className={`w-full max-w-3xl shadow-md border-t-4 ${isFailed ? 'border-t-red-600' : 'border-t-blue-600'}`}>
         <CardContent className="pt-10 pb-10">
           <div className="flex flex-col items-center space-y-10">
-            {/* Professional Header */}
             <div className="text-center space-y-4 w-full">
               <div className={`w-20 h-20 ${isFailed ? 'bg-red-50' : 'bg-blue-50'} rounded-full flex items-center justify-center mx-auto mb-6 border-2 ${isFailed ? 'border-red-100' : 'border-blue-100'}`}>
                 {progress < 100 ? (
@@ -76,7 +78,6 @@ const DownloadProgress = () => {
               </p>
             </div>
 
-            {/* Progress section with larger elements */}
             <div className="w-full space-y-8">
               <div className="space-y-4">
                 <Progress value={progress} className={`h-4 rounded-full ${isFailed ? 'bg-red-600' : ''}`} />
@@ -86,7 +87,6 @@ const DownloadProgress = () => {
                 </div>
               </div>
 
-              {/* Download details */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50 p-6 rounded-xl">
                 <div className="space-y-2">
                   <p className="text-lg text-gray-600">Download Speed</p>
@@ -102,7 +102,6 @@ const DownloadProgress = () => {
                 </div>
               </div>
 
-              {/* Clear status message */}
               <div className={`text-center py-4 rounded-xl ${isFailed ? 'bg-red-50' : 'bg-blue-50'}`}>
                 <p className={`text-lg ${isFailed ? 'text-red-800' : 'text-blue-800'}`}>
                   {progress < 100
