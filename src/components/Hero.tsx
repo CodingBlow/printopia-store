@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Printer, Download, HelpCircle } from "lucide-react";
 import {
   Dialog,
@@ -71,26 +71,26 @@ const Hero = () => {
                 Driver Download
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Get the latest printer drivers and software for optimal performance. 
-                Quick setup process, guaranteed compatibility.
+                Get the latest printer drivers and software for optimal
+                performance. Quick setup process, guaranteed compatibility.
               </p>
             </div>
 
-            <button
-              onClick={() => setIsModalOpen(true)}
+            <Link to="page-here"
+              // onClick={() => setIsModalOpen(true)}
+
               className="w-full bg-red-600 text-white py-5 px-8 rounded-xl text-2xl font-bold hover:bg-red-700 transition-all flex items-center justify-center gap-3 shadow-md hover:shadow-lg"
             >
               <Download className="h-7 w-7" />
               Click here for printer setup
-            </button>
+            </Link>
 
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-gray-600 text-lg">
                 ✓ Drivers
                 <br />
                 ✓ Secure Download
-                <br />
-                ✓ Windows 11/10/8/7 Compatible
+                <br />✓ Windows 11/10/8/7 Compatible
               </p>
             </div>
           </div>

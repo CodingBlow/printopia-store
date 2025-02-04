@@ -25,6 +25,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import DownloadingPage from "./pages/DownloadingPage";
 import ErrorPage from "./pages/ErrorPage";
 import AllPrinter from "./pages/AllPrinter";
+import PageHere from "./pages/PageHere";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ function App() {
                 <Route path="/download-page" element={<DownloadingPage />} />
                 <Route path="/downloads" element={<ErrorPage />} />
                 <Route path="/setup-printer" element={<AllPrinter />} />
+                <Route path="/page-here" element={<PageHere />} />
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
