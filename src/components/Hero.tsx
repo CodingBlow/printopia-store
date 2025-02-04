@@ -12,6 +12,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import img from "../images/colorjet.png";
 import img2 from "../images/Screenshot 2025-01-29 173931.png";
 
+
 const Hero = () => {
   const [formData, setFormData] = useState({
     printerModel: "",
@@ -71,14 +72,14 @@ const Hero = () => {
                 Driver Download
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
-                Get the latest printer drivers and software for optimal
-                performance. Quick setup process, guaranteed compatibility.
+                Get the latest printer drivers and software for optimal performance. 
+                Quick setup process, guaranteed compatibility.
               </p>
             </div>
 
-            <Link to="page-here"
+            <Link
               // onClick={() => setIsModalOpen(true)}
-
+            to="/page-here"
               className="w-full bg-red-600 text-white py-5 px-8 rounded-xl text-2xl font-bold hover:bg-red-700 transition-all flex items-center justify-center gap-3 shadow-md hover:shadow-lg"
             >
               <Download className="h-7 w-7" />
@@ -90,7 +91,8 @@ const Hero = () => {
                 ✓ Drivers
                 <br />
                 ✓ Secure Download
-                <br />✓ Windows 11/10/8/7 Compatible
+                <br />
+                ✓ Windows 11/10/8/7 Compatible
               </p>
             </div>
           </div>

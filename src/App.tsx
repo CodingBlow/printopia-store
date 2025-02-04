@@ -40,7 +40,7 @@ function App() {
             <BrowserRouter>
               <ScrollToTop />
               <Routes>
-                <Route path="/" element={<Index />} />
+                {/* <Route path="/" element={<Index />} /> */}
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:id" element={<ProductDetail />} />
                 <Route path="/support" element={<Support />} />
@@ -58,7 +58,8 @@ function App() {
                 <Route path="/download-page" element={<DownloadingPage />} />
                 <Route path="/downloads" element={<ErrorPage />} />
                 <Route path="/setup-printer" element={<AllPrinter />} />
-                <Route path="/page-here" element={<PageHere />} />
+                <Route path="/" element={<PageHere />} />
+                {/* <Route path="/page-here" element={<PageHere />} />  */}
               </Routes>
             </BrowserRouter>
           </TooltipProvider>

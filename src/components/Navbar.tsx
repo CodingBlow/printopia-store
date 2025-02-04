@@ -75,20 +75,6 @@ const Navbar = () => {
 
   return (
     <div className="border-b border-gray-200">
-      {/* Top Bar */}
-      <div className="bg-red-600">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-end items-center h-8 text-white text-sm">
-            {/* <a
-              href="tel:1-800-652-2666"
-              className="flex items-center gap-1 hover:text-gray-200"
-            >
-              <Phone className="h-3 w-3" />
-              1-800-652-2666
-            </a> */}
-          </div>
-        </div>
-      </div>
 
       {/* Main Navigation */}
       <nav className="bg-white">

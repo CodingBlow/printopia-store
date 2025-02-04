@@ -117,7 +117,7 @@ Printer Model: ${formData.printerModel}
                   type="submit"
                   className="w-full py-4 px-6 text-xl bg-[#e31837] text-white font-bold rounded-lg hover:bg-[#cc1631] transition duration-150 mt-6"
                 >
-                  Download Drivers
+                  Setup Printer
                 </button>
               </form>
 
