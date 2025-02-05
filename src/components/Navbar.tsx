@@ -24,7 +24,7 @@ import { updateQuantity, clearCart } from "@/store/cartSlice";
 import CartItem from "./CartItem";
 import { toast } from "./ui/use-toast";
 import CheckoutForm from "./CheckoutForm";
-import logo from "../images/Screenshot 2025-01-29 173923.png"
+import logo from "../images/logo1.png"
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
