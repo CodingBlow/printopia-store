@@ -201,29 +201,7 @@ const SetupGuide = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex gap-3">
-                <Button
-                  variant="default"
-                  className="bg-blue-600 hover:bg-blue-700"
-                  onClick={() => (window.location.href = "/driver-download")}
-                >
-                  <Download className="mr-2 h-5 w-5 sm:h-6 sm:w-6" />
-                  Remote Setup
-                </Button>
-                <Button
-                  variant="default"
-                  className="bg-green-600 hover:bg-green-700"
-                  onClick={() =>
-                    window.open(
-                      "https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0",
-                      "_blank"
-                    )
-                  }
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Live Chat
-                </Button>
-              </div>
+             
             </div>
           </div>
 
