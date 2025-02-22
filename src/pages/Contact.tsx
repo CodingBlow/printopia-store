@@ -16,10 +16,11 @@ const Contact = () => {
     const formData = new FormData(e.target as HTMLFormElement);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
     const message = formData.get("message") as string;
 
     try {
-      const telegramMessage = `New message from ${name} (${email}):\n\n${message}`;
+      const telegramMessage = `New message from ${name} (${email}, ${phone}):\n\n${message}`;
       const response = await fetch(
         `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
         {
@@ -73,6 +74,14 @@ const Contact = () => {
                     name="email"
                     type="email"
                     placeholder="Your Email"
+                    required
+                  />
+                </div>
+                <div>
+                  <Input
+                    name="phone"
+                    type="tel"
+                    placeholder="Your Phone Number"
                     required
                   />
                 </div>
@@ -138,3 +147,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
