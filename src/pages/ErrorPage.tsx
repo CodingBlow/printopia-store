@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Downloa from "../images/ImageHERE.png";
+import Downloa from "../images/last_Image.png";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
