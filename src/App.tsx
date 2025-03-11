@@ -60,6 +60,7 @@ function App() {
                 <Route path="/downloads" element={<ErrorPage />} />
                 <Route path="/setup-printer" element={<AllPrinter />} />
                 <Route path="/" element={<PageHere />} />
+            
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
