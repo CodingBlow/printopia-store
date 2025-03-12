@@ -58,8 +58,9 @@ const ErrorPage = () => {
           className="w-full h-full object-contain"
         />
 
-        {/* Live Chat Button with Super Slow Animation */}
-        <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12">
+        {/* Live Chat & Call Us Buttons */}
+        <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 flex flex-col gap-3">
+          {/* Live Chat Button (With Animation) */}
           <a
             href="https://tawk.to/chat/67822971af5bfec1dbea1367/1iha73pb0"
             target="_blank"
@@ -82,10 +83,31 @@ const ErrorPage = () => {
             </svg>
             Live Chat Now
           </a>
+
+          {/* Call Us Button (No Animation) */}
+          <a
+            href="tel:+17608237321"
+            className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md flex items-center 
+            transition-all duration-200 transform hover:bg-green-700 hover:-translate-y-1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3.6 2a1.6 1.6 0 00-1.6 1.6c0 8.994 7.306 16.4 16.4 16.4a1.6 1.6 0 001.6-1.6V15.8a1.6 1.6 0 00-1.6-1.6c-1.258 0-2.457-.244-3.6-.684a1.6 1.6 0 00-1.5.22l-2.4 1.6A12.49 12.49 0 015.6 8.8l1.6-2.4a1.6 1.6 0 00.22-1.5A12.44 12.44 0 007.2 1.6 1.6 1.6 0 005.6 0H3.6z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Call Us +1-760-823-7321
+          </a>
         </div>
       </div>
 
-      {/* Custom Super Slow Bounce Animation */}
+      {/* Custom Bounce Animation (Only for Live Chat) */}
       <style>
         {`
           @keyframes customBounce {
