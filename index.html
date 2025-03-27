@@ -30,8 +30,6 @@
     <link rel="canonical" href="https://montoprint.com" />
     <link rel="icon" href="/favicon.ico" />
 
-    
-
     <!-- Structured Data (JSON-LD) for better SEO visibility -->
     <script type="application/ld+json">
       {
@@ -61,11 +59,8 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "AW-11559189171");
     </script>
-    <!-- Event snippet for Button Clicked conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
     <script>
       function gtag_report_conversion(url) {
         var callback = function () {
@@ -81,6 +76,35 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         });
         return false;
       }
+    </script>
+
+    <!-- Geo-blocking Script -->
+    <script>
+      async function checkCountry() {
+        try {
+          // Fetch user's country using ipapi.co (free IP geolocation API)
+          const response = await fetch("https://ipapi.co/json/");
+          const data = await response.json();
+          const countryCode = data.country_code; // e.g., "IN" for India
+
+          if (countryCode === "IN") {
+            // Hide content and show a vague message
+            document.body.innerHTML = `
+              <div style="text-align: center; padding: 50px;">
+                <h1>Oops!</h1>
+                <p>Please check your internet connection and retry.</p>
+                <button onclick="location.reload()" style="padding: 10px 20px; font-size: 16px; background: #ff5722; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Retry</button>
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error("Error fetching geolocation:", error);
+          // Fallback: Allow access if API fails
+        }
+      }
+
+      // Run the check when the page loads
+      window.onload = checkCountry;
     </script>
   </head>
   <body>
@@ -98,18 +122,21 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         s.parentNode.insertBefore(tg, s);
       })();
     </script>
-    <noscript
-      ><img
+    <noscript>
+      <img
         src="//p.tgtag.io/event?property_id=tg-016725-001&event_name=pageview&no_script=1"
         width="1"
         height="1"
         border="0"
-    /></noscript>
+      />
+    </noscript>
     <!-- TrafficGuard End-->
+
     <div id="root"></div>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
-    <!--Start of Tawk.to Script-->
+
+    <!-- Start of Tawk.to Script -->
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
@@ -123,6 +150,6 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
-    <!--End of Tawk.to Script-->
+    <!-- End of Tawk.to Script -->
   </body>
 </html>
